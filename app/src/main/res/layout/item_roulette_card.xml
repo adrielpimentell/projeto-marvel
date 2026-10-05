@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roulette_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_sm"
+    android:layout_marginBottom="@dimen/space_sm"
+    app:strokeWidth="1dp"
+    tools:strokeColor="@color/rarity_epic">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/roulette_icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_icon_circle"
+                android:importantForAccessibility="no"
+                android:padding="@dimen/space_sm"
+                android:src="@drawable/ic_wheel"
+                app:tint="@color/rarity_epic" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/card_padding_compact"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/roulette_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Marvel.Headline"
+                    android:textColor="@color/text_primary"
+                    tools:text="Roleta Épica"/>
+
+                <TextView
+                    android:id="@+id/roulette_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Mais de 1 em 3 giros sai Épico"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/roulette_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/text_primary"
+                android:textAppearance="@style/TextAppearance.Marvel.Title"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_coin"
+                app:drawableTint="@color/red"
+                tools:text="15.000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/roulette_odds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_padding_compact"
+            android:background="@drawable/bg_search"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_sm"
+            android:paddingBottom="@dimen/space_sm">
+
+            <include
+                android:id="@+id/odds_common"
+                layout="@layout/view_stat_column" />
+
+            <include
+                android:id="@+id/odds_rare"
+                layout="@layout/view_stat_column" />
+
+            <include
+                android:id="@+id/odds_epic"
+                layout="@layout/view_stat_column" />
+
+            <include
+                android:id="@+id/odds_legendary"
+                layout="@layout/view_stat_column" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/roulette_spin"
+            style="@style/Widget.Marvel.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_padding_compact"
+            android:text="@string/roulette_spin"
+            app:icon="@drawable/ic_wheel"
+            app:iconGravity="textStart" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

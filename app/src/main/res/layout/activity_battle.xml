@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/battle_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.battle.BattleActivity">
+
+    <ImageButton
+        android:id="@+id/close_button"
+        style="@style/Widget.Marvel.IconButton"
+        android:layout_marginStart="@dimen/card_padding_compact"
+        android:layout_marginTop="@dimen/space_sm"
+        android:contentDescription="@string/action_close"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/player_hud"
+        layout="@layout/view_player_hud"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_sm"
+        android:layout_marginEnd="@dimen/card_padding_compact"
+        app:layout_constraintBottom_toBottomOf="@id/close_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/close_button"
+        app:layout_constraintTop_toTopOf="@id/close_button" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/result_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/close_button"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingTop="@dimen/card_padding_compact"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingBottom="@dimen/screen_margin">
+
+            <FrameLayout
+                android:id="@+id/result_icon_bg"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:background="@drawable/bg_circle"
+                android:backgroundTint="@color/green">
+
+                <ImageView
+                    android:id="@+id/result_icon"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_trophy"
+                    app:tint="@color/white" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/result_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_md"
+                android:textAppearance="@style/TextAppearance.Marvel.DisplayLarge"
+                android:textColor="@color/text_primary"
+                tools:text="Vitória!"/>
+
+            <TextView
+                android:id="@+id/result_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:gravity="center"
+                android:textColor="@color/text_secondary"
+                android:textAppearance="@style/TextAppearance.Marvel.Body"
+                tools:text="Wolverine venceu Magneto em 7 turnos."/>
+
+            <TextView
+                android:id="@+id/rank_change"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_padding_compact"
+                android:background="@drawable/bg_pill_red"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/card_padding_compact"
+                android:paddingTop="@dimen/space_sm"
+                android:paddingEnd="@dimen/card_padding_compact"
+                android:paddingBottom="@dimen/space_sm"
+                android:textColor="@color/red"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_medal"
+                app:drawableTint="@color/red"
+                tools:text="Nova patente: Herói!"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/daily_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:background="@drawable/bg_pill_surface"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/card_padding_compact"
+                android:paddingTop="@dimen/space_sm"
+                android:paddingEnd="@dimen/card_padding_compact"
+                android:paddingBottom="@dimen/space_sm"
+                android:textColor="@color/text_label"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_trophy"
+                app:drawableTint="@color/green"
+                tools:text="Desafio do dia concluído: Vença 2 batalhas · +150 moedas"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/challenger_image"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:importantForAccessibility="no"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Pill"
+                            tools:src="@drawable/placeholder_character" />
+
+                        <TextView
+                            android:id="@+id/challenger_name"
+                            style="@style/Widget.Marvel.FighterName"
+                            tools:text="Wolverine" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_sm"
+                        android:layout_marginEnd="@dimen/space_sm"
+                        android:text="@string/battle_vs"
+                        android:textAppearance="@style/TextAppearance.Marvel.Display"
+                        android:textColor="@color/red"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/opponent_image"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:importantForAccessibility="no"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Pill"
+                            tools:src="@drawable/placeholder_character" />
+
+                        <TextView
+                            android:id="@+id/opponent_name"
+                            style="@style/Widget.Marvel.FighterName"
+                            tools:text="Magneto" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/space_md"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:background="@drawable/divider_dashed" />
+
+                <include
+                    android:id="@+id/row_life"
+                    layout="@layout/item_battle_row" />
+
+                <include
+                    android:id="@+id/row_strength"
+                    layout="@layout/item_battle_row" />
+
+                <include
+                    android:id="@+id/row_speed"
+                    layout="@layout/item_battle_row" />
+
+                <include
+                    android:id="@+id/row_intelligence"
+                    layout="@layout/item_battle_row" />
+
+                <include
+                    android:id="@+id/row_overall"
+                    layout="@layout/item_battle_row" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:layout_marginBottom="@dimen/card_padding_compact"
+                    android:background="@drawable/divider_dashed" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/battle_coins_label"
+                        android:textColor="@color/text_muted"
+                        android:textAppearance="@style/TextAppearance.Marvel.Body"/>
+
+                    <TextView
+                        android:id="@+id/coins_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Marvel.Title"
+                        android:textStyle="bold"
+                        tools:text="+500"
+                        tools:textColor="@color/green"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/trophies_label"
+                        android:text="@string/battle_trophies_label"
+                        android:textColor="@color/text_muted"
+                        android:textAppearance="@style/TextAppearance.Marvel.Body"/>
+
+                    <TextView
+                        android:id="@+id/trophies_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Marvel.Title"
+                        android:textStyle="bold"
+                        tools:text="+10"
+                        tools:textColor="@color/green"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/total_label"
+                        android:text="@string/battle_total_label"
+                        android:textColor="@color/text_muted"
+                        android:textAppearance="@style/TextAppearance.Marvel.Body"/>
+
+                    <TextView
+                        android:id="@+id/total_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:textAppearance="@style/TextAppearance.Marvel.Title"
+                        android:textStyle="bold"
+                        tools:text="40 troféus · Recruta"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/record_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_padding_compact"
+                    android:gravity="center"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Vitórias: 3 · Derrotas: 1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/arena"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingEnd="@dimen/screen_margin"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/close_button"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/enemy_block"
+            layout="@layout/view_fighter_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/arena_turn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:textColor="@color/text_secondary"
+            android:textAppearance="@style/TextAppearance.Marvel.BodySmall"
+            tools:text="Turno 3"/>
+
+        <TextView
+            android:id="@+id/arena_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/battle_vs"
+            android:textAppearance="@style/TextAppearance.Marvel.Display"
+            android:textColor="@color/red"
+            android:textSize="56sp" />
+
+        <TextView
+            android:id="@+id/arena_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_lg"
+            android:gravity="center"
+            android:minLines="2"
+            android:textColor="@color/text_label"
+            android:textAppearance="@style/TextAppearance.Marvel.Body"
+            tools:text="Crítico! Wolverine acertou 147"/>
+
+        <include
+            android:id="@+id/hero_block"
+            layout="@layout/view_fighter_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/battle_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:indeterminateTint="@color/red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_padding_compact"
+            android:text="@string/battle_loading"
+            android:textColor="@color/text_secondary"
+            android:textAppearance="@style/TextAppearance.Marvel.Body"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/battle_error"
+        layout="@layout/view_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingTop="@dimen/card_padding_compact"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingBottom="@dimen/card_padding_compact"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_button"
+            style="@style/Widget.Marvel.Button.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/button_height"
+            android:text="@string/action_skip"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back_home_button"
+            style="@style/Widget.Marvel.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_back_home"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

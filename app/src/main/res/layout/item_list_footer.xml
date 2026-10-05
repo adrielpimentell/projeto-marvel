@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="72dp">
+
+    <FrameLayout
+        android:id="@+id/footer_skeleton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/footer_progress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/space_sm"
+        android:indeterminateTint="@color/red" />
+
+    <LinearLayout
+        android:id="@+id/footer_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/space_sm"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/footer_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.BodySmall"
+            android:textColor="@color/text_secondary"
+            tools:text="@string/error_no_connection" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/footer_retry"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_retry"
+            android:textColor="@color/red" />
+    </LinearLayout>
+</FrameLayout>

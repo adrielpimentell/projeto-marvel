@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MergeRootFrame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <TextView
+            android:id="@+id/fighter_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="72dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textAppearance="@style/TextAppearance.Marvel.TitleLarge"
+            android:textStyle="bold"
+            tools:text="Lucas Jackson"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fighter_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                tools:text="Seu herói · Overall 24"/>
+
+            <ImageView
+                android:id="@+id/fighter_status_shield"
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:layout_marginStart="@dimen/space_sm"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_shield"
+                android:visibility="gone"
+                app:tint="@color/effect_shield"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/fighter_status_poison"
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:layout_marginStart="@dimen/space_sm"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_drop"
+                android:visibility="gone"
+                app:tint="@color/effect_green"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/fighter_status_stun"
+                android:layout_width="@dimen/icon_sm"
+                android:layout_height="@dimen/icon_sm"
+                android:layout_marginStart="@dimen/space_sm"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_star"
+                android:visibility="gone"
+                app:tint="@color/effect_stun"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/fighter_hp_bar"
+            style="@style/Widget.Marvel.AttributeBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_padding_compact"
+            app:trackCornerRadius="6dp"
+            app:trackThickness="12dp"
+            tools:progress="70" />
+
+        <TextView
+            android:id="@+id/fighter_hp_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:gravity="end"
+            android:textColor="@color/text_label"
+            android:textAppearance="@style/TextAppearance.Marvel.Caption"
+            tools:text="161 / 230"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fighter_damage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="@dimen/space_sm"
+        android:layout_marginEnd="@dimen/space_md"
+        android:alpha="0"
+        android:textAppearance="@style/TextAppearance.Marvel.DisplayLarge"
+        android:textColor="@color/text_primary"
+        tools:alpha="1"
+        tools:text="-42"/>
+
+    <TextView
+        android:id="@+id/fighter_effect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/space_md"
+        android:layout_marginBottom="@dimen/space_xl"
+        android:alpha="0"
+        android:textAppearance="@style/TextAppearance.Marvel.Headline"
+        android:textColor="@color/effect_green"
+        tools:alpha="1"
+        tools:text="+12"/>
+
+    <ImageView
+        android:id="@+id/fighter_block_icon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:alpha="0"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_shield"
+        app:tint="@color/effect_shield" />
+</FrameLayout>

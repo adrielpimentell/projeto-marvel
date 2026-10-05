@@ -1,0 +1,437 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Marvel Battle</string>
+
+    <string name="list_title">Marvel</string>
+    <string name="list_subtitle">Escolha seu campeão</string>
+    <string name="coins_description">Suas moedas: %1$d</string>
+    <string name="trophies_description">Seus troféus: %1$d</string>
+    <string name="rank_description_hud">Sua patente: %1$s. Toque para abrir a Trilha de Patentes.</string>
+    <string name="trophies_with_rank">%1$s troféus · %2$s</string>
+    <string name="active_hero_subtitle">Herói ativo: %1$s · Overall %2$d</string>
+    <string name="starter_hero_fallback">Herói inicial</string>
+    <string name="splash_description">Vídeo de abertura. Toque para pular.</string>
+    <string name="search_hint">Buscar personagem</string>
+    <string name="search_clear">Limpar busca</string>
+    <string name="loading">Carregando…</string>
+    <string name="search_hint_hero">Buscar herói…</string>
+    <string name="family_all">Todas</string>
+    <string name="family_chip">%1$s (%2$d)</string>
+    <string name="family_see_all">Ver todas</string>
+    <string name="family_dialog_title">Escolha a família</string>
+    <string name="family_no_results">Nenhum herói de %1$s encontrado</string>
+    <string name="search_no_results">Nenhum herói encontrado para \'%1$s\'</string>
+    <string name="sort_classic">Clássicos</string>
+    <string name="sort_updated">Atualizados</string>
+    <string name="sort_name">A–Z</string>
+    <string name="section_all">Personagens Marvel</string>
+    <string name="section_search">Resultados para “%1$s”</string>
+    <string name="real_name_unknown">Nome real não informado</string>
+    <plurals name="issue_count">
+        <item quantity="one">%1$s edição</item>
+        <item quantity="other">%1$s edições</item>
+    </plurals>
+
+    <string name="action_back">Voltar</string>
+    <string name="action_battle">Batalhar</string>
+    <string name="stat_issues">Edições</string>
+    <string name="stat_movies">Filmes</string>
+    <string name="stat_teams">Times</string>
+    <string name="stat_unknown">—</string>
+    <string name="info_origin">Origem</string>
+    <string name="info_first_appearance">1ª aparição</string>
+    <string name="info_aliases">Também conhecido como</string>
+    <string name="first_appearance_format">#%1$s · %2$s</string>
+    <string name="section_attributes">Atributos de jogo</string>
+    <string name="attr_overall">Overall</string>
+    <string name="attr_life">Vida</string>
+    <string name="attr_strength">Força</string>
+    <string name="attr_speed">Velocidade</string>
+    <string name="attr_intelligence">Inteligência</string>
+    <string name="attr_caption">Calculados com poderes, edições, times e filmes da Comic Vine.</string>
+    <string name="section_about">Sobre</string>
+    <string name="about_empty">A Comic Vine ainda não tem um resumo deste personagem.</string>
+    <string name="action_open_article">Ler artigo completo na Comic Vine</string>
+    <string name="no_browser">Nenhum navegador encontrado no aparelho.</string>
+    <string name="section_powers">Poderes (%1$d)</string>
+    <string name="section_teams">Times (%1$d)</string>
+    <string name="section_movies">Filmes (%1$d)</string>
+    <string name="powers_empty">Nenhum poder registrado na Comic Vine.</string>
+    <string name="teams_empty">Não faz parte de nenhum time registrado.</string>
+    <string name="movies_empty">Ainda não apareceu em filmes registrados.</string>
+    <string name="show_more_chips">+%1$d</string>
+    <string name="show_all_movies">Ver todos (%1$d)</string>
+
+    <string name="battle_loading">Preparando a arena…</string>
+    <string name="battle_win_title">Vitória!</string>
+    <string name="battle_loss_title">Derrota</string>
+    <plurals name="battle_subtitle">
+        <item quantity="one">%1$s venceu %2$s em %3$d turno.</item>
+        <item quantity="other">%1$s venceu %2$s em %3$d turnos.</item>
+    </plurals>
+    <string name="battle_vs">VS</string>
+    <string name="battle_coins_label">Moedas ganhas</string>
+    <string name="battle_trophies_label">Troféus da batalha</string>
+    <string name="battle_total_label">Seus troféus</string>
+    <string name="battle_rank_up">Nova patente: %1$s!</string>
+    <string name="battle_rank_down">Você caiu para %1$s.</string>
+    <string name="battle_record">Vitórias: %1$d · Derrotas: %2$d</string>
+    <string name="battle_button_reward" tools:ignore="PluralsCandidate">Batalhar · vale %1$d moedas</string>
+    <string name="battle_self">%1$s é o seu herói ativo. Escolha outro oponente.</string>
+
+    <string name="action_skip">Pular</string>
+    <string name="arena_ready">Preparar…</string>
+    <string name="arena_fight">Luta!</string>
+    <string name="arena_ko">K.O.!</string>
+    <string name="arena_turn">Turno %1$d</string>
+    <string name="arena_hit">%1$s acertou %2$d</string>
+    <string name="arena_crit">Crítico! %1$s acertou %2$d</string>
+    <string name="fighter_hero_tag">Seu herói · Overall %1$d</string>
+    <string name="effect_heal_format">+%1$d</string>
+    <string name="arena_dodge">%1$s desviou!</string>
+    <string name="arena_dodge_label">Desviou</string>
+    <string name="arena_block">O escudo de %1$s bloqueou o golpe!</string>
+    <string name="arena_block_label">Bloqueou</string>
+    <string name="arena_execute">Golpe final! %1$s acertou %2$d</string>
+    <string name="arena_stunned">%1$s está atordoado e perdeu o turno</string>
+    <string name="arena_stunned_label">Atordoado</string>
+    <string name="arena_poison_tick">Veneno: %1$s perdeu %2$d</string>
+    <string name="arena_regen">Fator de Cura: %1$s recuperou %2$d</string>
+    <string name="arena_lifesteal">Roubo de vida: +%1$d</string>
+    <string name="arena_thorns">Espinhos: %1$s perdeu %2$d</string>
+    <string name="arena_poisoned">%1$s foi envenenado</string>
+    <string name="arena_stun_applied">%1$s ficou atordoado!</string>
+    <string name="fighter_enemy_tag">Inimigo · Overall %1$d</string>
+    <string name="hp_format">%1$d / %2$d</string>
+    <string name="damage_format">-%1$d</string>
+    <string name="action_back_home">Voltar ao início</string>
+    <string name="action_close">Fechar</string>
+
+    <string name="market_title">Mercado</string>
+    <string name="market_subtitle">Contrate heróis e gire roletas de artefatos</string>
+    <string name="market_tab_heroes">Heróis</string>
+    <string name="market_tab_artifacts">Artefatos</string>
+    <string name="roulette_common">Roleta Comum</string>
+    <string name="roulette_rare">Roleta Rara</string>
+    <string name="roulette_epic">Roleta Épica</string>
+    <string name="roulette_legendary">Roleta Lendária</string>
+    <string name="roulette_hint_common">Barata, para completar os comuns</string>
+    <string name="roulette_hint_rare">Boa chance de artefatos raros</string>
+    <string name="roulette_hint_epic">Mais de 1 em 3 giros sai Épico</string>
+    <string name="roulette_hint_legendary">Sem comuns e 30% de Lendário</string>
+    <string name="roulette_spin">Girar</string>
+    <string name="roulette_percent">%1$s%%</string>
+    <string name="roulette_no_coins">Moedas insuficientes para este giro.</string>
+    <string name="roulette_odds_description">%1$s: %2$s</string>
+    <string name="market_buy">Comprar</string>
+    <string name="market_overall">OVR %1$d</string>
+    <string name="market_overall_loading">OVR —</string>
+    <string name="market_price_loading">…</string>
+    <string name="market_unavailable">Não carregou · toque para tentar</string>
+    <string name="market_confirm_title">Contratar %1$s?</string>
+    <string name="market_confirm_message">Custa %1$s moedas. Heróis comprados não podem ser vendidos.</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="market_bought">%1$s agora é seu! Ele aparece em Meus Heróis.</string>
+    <string name="market_buy_failed">Não foi possível concluir a compra. Confira suas moedas.</string>
+    <string name="market_more_message">Quer ver outros heróis?</string>
+    <string name="market_more_action">Carregar mais</string>
+    <string name="market_empty">Você já comprou todos os heróis mostrados. Carregue mais para ver outros.</string>
+
+    <string name="my_heroes_title">Meus Heróis</string>
+    <string name="my_heroes_subtitle">Escolha quem luta e melhore os atributos</string>
+    <string name="hero_active">Ativo</string>
+    <string name="hero_use">Usar</string>
+    <string name="hero_now_active">%1$s agora é o seu herói ativo.</string>
+    <string name="upgrade_max">MÁX</string>
+    <string name="upgrade_description" tools:ignore="PluralsCandidate">Melhorar %1$s por %2$d moedas</string>
+    <string name="upgrade_failed">Moedas insuficientes para essa melhoria.</string>
+
+    <string name="trail_title">Trilha de Patentes</string>
+    <string name="trail_subtitle">Vença batalhas para ganhar troféus e subir de patente. Cada nova patente, a partir de Herói, libera um baú.</string>
+    <string name="trail_rank_number">Patente %1$d</string>
+    <string name="trail_chest_none">Sem baú</string>
+    <string name="trail_chest_locked">Bloqueado</string>
+    <string name="trail_chest_opened">Baú aberto</string>
+    <string name="trail_chest_ready">Baú pronto para abrir</string>
+    <string name="chest_open">Abrir</string>
+    <string name="trail_you">Você · %1$s</string>
+    <string name="trail_last_threshold">%1$s+</string>
+    <string name="trail_next">Faltam %1$s para %2$s</string>
+    <string name="trail_max">Patente máxima alcançada!</string>
+    <string name="trail_card_description">%1$s, a partir de %2$s troféus. %3$s.</string>
+
+    <string name="chest_title">Baú de %1$s</string>
+    <string name="chest_skip_hint">Toque para pular</string>
+    <string name="chest_done_hint">Adicionado aos seus artefatos</string>
+    <string name="chest_continue">Continuar</string>
+    <string name="chest_collect">Coletar</string>
+    <string name="chest_legendary_banner">Lendário!</string>
+    <string name="debug_replay">Rever animação</string>
+    <string name="debug_slow_motion">Câmera lenta</string>
+    <string name="chest_coins_name">%1$s moedas</string>
+    <string name="chest_coins_effect">Você já tem todos os artefatos dessa raridade, então o baú virou moedas.</string>
+
+    <string name="artifacts_title">Artefatos</string>
+    <string name="artifacts_subtitle">Equipe até 2 artefatos no seu herói ativo</string>
+    <string name="artifacts_active_hero">Herói ativo: %1$s</string>
+    <string name="artifacts_slot_empty">Espaço livre</string>
+    <string name="artifacts_slot_hint">Toque para remover</string>
+    <string name="artifacts_preview_title">Atributos na batalha</string>
+    <string name="artifacts_collection">Coleção · %1$d de %2$d</string>
+    <string name="artifacts_equip">Equipar</string>
+    <string name="artifacts_remove">Remover</string>
+    <string name="artifacts_with_hero">Com %1$s</string>
+    <string name="artifacts_not_found">Encontre em baús</string>
+    <string name="artifacts_slots_full">Remova um dos 2 artefatos equipados para equipar outro.</string>
+    <string name="artifacts_equipped_toast">%1$s equipado em %2$s.</string>
+    <string name="artifacts_removed_toast">%1$s removido.</string>
+    <string name="artifacts_open_button" tools:ignore="PluralsCandidate">Artefatos · %1$d/%2$d equipados</string>
+    <string name="artifacts_hero_line">Artefatos: %1$s</string>
+    <string name="artifacts_rarity_type">%1$s · %2$s</string>
+    <string name="stat_short_life">Vida</string>
+    <string name="stat_short_strength">Força</string>
+    <string name="stat_short_speed">Veloc.</string>
+    <string name="stat_short_intelligence">Intel.</string>
+    <string name="stat_short_overall">OVR</string>
+    <string name="stat_bonus">+%1$d</string>
+    <string name="rarity_common">Comum</string>
+    <string name="rarity_rare">Raro</string>
+    <string name="rarity_epic">Épico</string>
+    <string name="rarity_legendary">Lendário</string>
+    <string name="artifact_type_attribute">Bônus de atributo</string>
+    <string name="artifact_type_special">Efeito especial</string>
+
+    <string-array name="rank_names">
+        <item>Recruta</item>
+        <item>Herói</item>
+        <item>Vingador</item>
+        <item>Defensor</item>
+        <item>Sentinela</item>
+        <item>Campeão</item>
+        <item>Lenda</item>
+        <item>Vingador Supremo</item>
+        <item>Celestial</item>
+        <item>Guardião Galáctico</item>
+        <item>Arauto Cósmico</item>
+        <item>Portador da Joia</item>
+        <item>Mestre Místico</item>
+        <item>Guardião do Multiverso</item>
+        <item>Vigia Eterno</item>
+        <item>Senhor da Manopla</item>
+        <item>Entidade Cósmica</item>
+    </string-array>
+    <string-array name="rank_descriptions">
+        <item>Está começando a jornada</item>
+        <item>Já começou a se destacar</item>
+        <item>Já faz parte da elite</item>
+        <item>Experiente e confiável</item>
+        <item>Nível elevado de habilidade</item>
+        <item>Entre os melhores</item>
+        <item>Reconhecido em todo o universo</item>
+        <item>Elite dos heróis</item>
+        <item>Poder em escala cósmica</item>
+        <item>Protege galáxias inteiras</item>
+        <item>Anuncia a chegada do fim</item>
+        <item>Carrega uma Joia do Infinito</item>
+        <item>Domina as artes místicas</item>
+        <item>Protege todas as linhas do tempo</item>
+        <item>Observa todas as realidades</item>
+        <item>Seis Joias em uma mão</item>
+        <item>O nível máximo</item>
+    </string-array>
+
+    <string name="debug_label">Depuração</string>
+    <string name="debug_add_trophies_small">+1.000 troféus</string>
+    <string name="debug_add_trophies_big">+10.000 troféus</string>
+    <string name="debug_add_coins">+1000 moedas</string>
+    <string name="debug_add_coins_big">+50.000 moedas</string>
+
+    <string name="origin_mutant">Mutante</string>
+    <string name="origin_cyborg">Ciborgue</string>
+    <string name="origin_alien">Alienígena</string>
+    <string name="origin_human">Humano</string>
+    <string name="origin_robot">Robô</string>
+    <string name="origin_radiation">Radiação</string>
+    <string name="origin_god">Deus/Eterno</string>
+    <string name="origin_animal">Animal</string>
+    <string name="origin_other">Outro</string>
+    <string name="origin_infection">Infecção</string>
+
+    <string name="state_error_title">Algo deu errado</string>
+    <string name="state_empty_title">Nenhum personagem encontrado</string>
+    <string name="state_empty_search">Nenhum personagem Marvel com “%1$s”.</string>
+    <string name="state_empty_partial">Ainda não apareceu nenhum personagem Marvel nos primeiros resultados.</string>
+    <string name="state_no_more_marvel">Nenhum personagem Marvel nos últimos resultados.</string>
+    <string name="action_retry">Tentar de novo</string>
+    <string name="action_search_more">Procurar mais</string>
+
+    <string name="nav_heroes">Heróis</string>
+    <string name="nav_market">Mercado</string>
+    <string name="nav_my_heroes">Meus Heróis</string>
+    <string name="nav_ranks">Patentes</string>
+    <string name="nav_album">Álbum de Equipes</string>
+
+    <string name="album_title">Álbum</string>
+    <string name="album_subtitle">Junte membros de cada equipe e ganhe selos</string>
+    <string name="album_seals" tools:ignore="PluralsCandidate">%1$d de %2$d selos</string>
+    <plurals name="album_claimable">
+        <item quantity="one">%1$d equipe com prêmio para resgatar</item>
+        <item quantity="other">%1$d equipes com prêmio para resgatar</item>
+    </plurals>
+    <string name="album_team_loading">Carregando equipe…</string>
+    <string name="album_team_failed">Não carregou · toque para tentar</string>
+    <plurals name="album_team_progress">
+        <item quantity="one">Você tem %1$d de %2$d membro</item>
+        <item quantity="other">Você tem %1$d de %2$d membros</item>
+    </plurals>
+    <string name="album_next_seal">Próximo selo com %1$d</string>
+    <string name="album_all_seals">Todos os selos!</string>
+    <string name="album_claim_pill">Resgatar</string>
+    <string name="album_empty">Nenhuma equipe carregou. Confira a internet e tente de novo.</string>
+    <string name="seal_bronze">Bronze</string>
+    <string name="seal_silver">Prata</string>
+    <string name="seal_gold">Ouro</string>
+    <string name="seal_state_earned">conquistado</string>
+    <string name="seal_state_ready">pronto para resgatar</string>
+    <string name="seal_state_locked">bloqueado</string>
+    <string name="seal_description">Selo de %1$s, %2$s</string>
+    <plurals name="team_members">
+        <item quantity="one">%1$d membro</item>
+        <item quantity="other">%1$d membros</item>
+    </plurals>
+    <string name="team_seal_coins">+%1$s</string>
+    <string name="team_claim_button">Resgatar %1$s moedas</string>
+    <plurals name="team_claim_locked">
+        <item quantity="one">Falta %1$d membro para o selo de %2$s</item>
+        <item quantity="other">Faltam %1$d membros para o selo de %2$s</item>
+    </plurals>
+    <string name="team_claim_done">Você tem todos os selos desta equipe</string>
+    <string name="team_claimed_toast">+%1$s moedas · %2$s</string>
+    <plurals name="team_seals_earned">
+        <item quantity="one">selo de %1$s</item>
+        <item quantity="other">selos de %1$s</item>
+    </plurals>
+    <string name="team_seals_and">%1$s e %2$s</string>
+    <string name="team_claim_failed">Não havia prêmio para resgatar.</string>
+    <string name="team_owned_section">Seus membros (%1$d)</string>
+    <string name="team_owned_empty">Nenhum ainda. Os membros desta equipe aparecem no Mercado.</string>
+    <string name="team_missing_section">Faltam (%1$d)</string>
+    <string name="team_missing_hint">Na ordem em que aparecem no Mercado</string>
+    <string name="team_member_owned">%1$s, você tem</string>
+    <string name="team_member_missing">%1$s, ainda falta</string>
+    <string name="market_teams_loading">Equipes…</string>
+    <string name="market_teams_none">Sem equipe</string>
+    <string name="market_teams_more">+%1$d</string>
+
+    <string name="daily_title">Desafios do dia</string>
+    <string name="daily_new_in">Novos em %1$d h %2$02d min</string>
+    <string name="daily_new_in_minutes">Novos em %1$d min</string>
+    <plurals name="daily_win_battles">
+        <item quantity="one">Vença %1$d batalha</item>
+        <item quantity="other">Vença %1$d batalhas</item>
+    </plurals>
+    <plurals name="daily_play_battles">
+        <item quantity="one">Lute %1$d batalha (derrota também conta)</item>
+        <item quantity="other">Lute %1$d batalhas (derrota também conta)</item>
+    </plurals>
+    <plurals name="daily_land_crits">
+        <item quantity="one">Acerte %1$d golpe crítico</item>
+        <item quantity="other">Acerte %1$d golpes críticos</item>
+    </plurals>
+    <string name="daily_defeat_origin">Derrote um inimigo de origem %1$s</string>
+    <string name="daily_defeat_team">Derrote um membro da equipe %1$s</string>
+    <string name="daily_win_with_team">Vença com um herói da equipe %1$s</string>
+    <string name="daily_win_with_power">Vença com um herói que tem o poder %1$s</string>
+    <string name="daily_win_with_artifact">Vença com um artefato equipado</string>
+    <string name="daily_win_vs_stronger">Vença um inimigo de Overall maior que o seu</string>
+    <string name="daily_win_with_overall">Vença com um herói de Overall %1$d ou mais</string>
+    <string name="daily_hint_heroes">Vale com: %1$s</string>
+    <string name="daily_hint_enemy">A tela do personagem avisa quando ele vale</string>
+    <string name="daily_hint_overall">Seu melhor tem %1$d: melhore atributos ou equipe artefatos</string>
+    <string name="daily_hint_artifact">Equipe em Meus Heróis → Artefatos</string>
+    <string name="daily_reward">+%1$s</string>
+    <string name="daily_progress">%1$d/%2$d</string>
+    <string name="daily_done">Feito</string>
+    <string name="daily_row_description">%1$s. Progresso %2$d de %3$d. Recompensa: %4$s moedas.</string>
+    <string name="daily_chest_locked">Complete os 3 para ganhar o baú do dia (%1$d/3)</string>
+    <plurals name="daily_chest_ready">
+        <item quantity="one">%1$d baú do dia para abrir</item>
+        <item quantity="other">%1$d baús do dia para abrir</item>
+    </plurals>
+    <string name="daily_chest_done">Baú de hoje já ganho. Volte amanhã!</string>
+    <string name="daily_chest_open">Abrir baú</string>
+    <string name="daily_debug_next_day">Trocar dia</string>
+    <string name="daily_debug_day_changed">Dia de teste: %1$s</string>
+    <string name="battle_daily_done">Desafio do dia concluído: %1$s · +%2$s moedas</string>
+    <string name="chest_daily_title">Baú do dia</string>
+    <string name="detail_counts_for_daily">Vale para o desafio: %1$s</string>
+
+    <string name="survival_title">Sobrevivência</string>
+    <string name="survival_record">Recorde: andar %1$d</string>
+    <string name="survival_no_record">Ainda sem recorde</string>
+    <string name="survival_rules">Lute andar por andar sem encher a vida. Cada vitória dá moedas, recupera %1$d%% da vida e deixa você escolher um bônus. O inimigo fica mais forte a cada andar. Troféus e patente não mudam.</string>
+    <string name="survival_hero">Herói: %1$s · OVR %2$d</string>
+    <string name="survival_start">Começar partida</string>
+    <string name="survival_last_run">Última partida: terminou no andar %1$d · +%2$s moedas</string>
+    <string name="survival_floor">Andar %1$d</string>
+    <string name="survival_power">Inimigo com %1$d%% de poder</string>
+    <string name="survival_hp">%1$d/%2$d</string>
+    <string name="survival_buffs">Bônus: %1$s</string>
+    <string name="survival_no_buffs">Bônus: nenhum ainda</string>
+    <string name="survival_buff_count">%1$s ×%2$d</string>
+    <string name="survival_run_coins">Moedas nesta partida: %1$s</string>
+    <string name="survival_choose">Escolha um bônus</string>
+    <string name="survival_choose_hint">Vale até o fim desta partida</string>
+    <string name="survival_next_enemy">Próximo inimigo</string>
+    <string name="survival_enemy_info">OVR %1$d · vida e dano × %2$d%%</string>
+    <string name="survival_fight">Lutar no andar %1$d</string>
+    <string name="survival_give_up">Desistir</string>
+    <string name="survival_give_up_title">Desistir da partida?</string>
+    <string name="survival_give_up_message">Você fica com as moedas dos andares vencidos, mas os bônus somem.</string>
+    <string name="survival_open_chest">Abrir baú da Sobrevivência</string>
+    <string name="survival_debug_skip">Pular andar</string>
+    <string name="survival_enemy_error">Não deu para sortear o inimigo. %1$s</string>
+    <string name="survival_buff_fury">Fúria</string>
+    <string name="survival_buff_fury_desc">+%1$d%% de dano (acumula)</string>
+    <string name="survival_buff_armor">Couraça</string>
+    <string name="survival_buff_armor_desc">+%1$d%% de vida máxima (acumula)</string>
+    <string name="survival_buff_focus">Foco</string>
+    <string name="survival_buff_focus_desc">+%1$d%% de chance de crítico</string>
+    <string name="survival_buff_lifesteal">Sanguessuga</string>
+    <string name="survival_buff_lifesteal_desc">%1$d%% do dano causado vira vida</string>
+    <string name="survival_buff_thorns">Espinhos</string>
+    <string name="survival_buff_thorns_desc">Devolve %1$d%% do dano recebido</string>
+    <string name="survival_buff_regen">Regeneração</string>
+    <string name="survival_buff_regen_desc">Cura %1$d%% da vida por turno</string>
+    <string name="survival_buff_reflexes">Reflexos</string>
+    <string name="survival_buff_reflexes_desc">%1$d%% de chance de esquivar</string>
+    <string name="survival_buff_medkit">Kit Médico</string>
+    <string name="survival_buff_medkit_desc">Cura %1$d%% da vida agora</string>
+    <string name="survival_win_title" tools:ignore="PluralsCandidate">Andar %1$d vencido!</string>
+    <string name="survival_loss_title">Fim da partida</string>
+    <string name="survival_floor_label">Andar</string>
+    <string name="survival_record_label">Recorde</string>
+    <string name="survival_result_new_record">andar %1$d · novo!</string>
+    <string name="survival_result_record">andar %1$d</string>
+    <string name="survival_result_hp">Vida para o próximo andar: %1$d/%2$d</string>
+    <plurals name="survival_result_over">
+        <item quantity="one">Você venceu %1$d andar e ganhou %2$s moedas nesta partida.</item>
+        <item quantity="other">Você venceu %1$d andares e ganhou %2$s moedas nesta partida.</item>
+    </plurals>
+    <string name="survival_chest_unlocked">Baú desbloqueado! Abra na tela da Sobrevivência.</string>
+    <string name="action_continue">Continuar</string>
+    <string name="chest_survival_title">Baú da Sobrevivência</string>
+    <string name="home_survival_title">Modo Sobrevivência</string>
+    <string name="home_survival_play">Jogar</string>
+    <string name="home_survival_continue">Continuar</string>
+    <string name="home_survival_running">Partida no andar %1$d · recorde %2$d</string>
+
+    <string name="error_missing_api_key">Chave da API não configurada. Adicione COMICVINE_API_KEY no arquivo local.properties e sincronize o Gradle.</string>
+    <string name="error_invalid_api_key">A Comic Vine recusou a chave. Confira o COMICVINE_API_KEY no local.properties.</string>
+    <string name="error_rate_limit">Muitas requisições em pouco tempo. Aguarde alguns minutos e tente de novo.</string>
+    <string name="error_server">O servidor da Comic Vine respondeu com erro (%1$d). Tente de novo.</string>
+    <string name="error_api">A Comic Vine respondeu: %1$s</string>
+    <string name="error_not_found">Personagem não encontrado.</string>
+    <string name="error_team_not_found">Equipe não encontrada.</string>
+    <string name="error_no_connection">Sem conexão com a internet. Verifique a rede e tente de novo.</string>
+    <string name="error_unexpected">Resposta inesperada da Comic Vine. Tente de novo.</string>
+</resources>

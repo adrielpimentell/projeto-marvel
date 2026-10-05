@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_xs"
+    android:layout_marginBottom="@dimen/space_xs"
+    android:background="@drawable/bg_card"
+    android:gravity="center_vertical"
+    android:importantForAccessibility="noHideDescendants"
+    android:orientation="horizontal"
+    android:padding="@dimen/card_padding_compact">
+
+    <View
+        style="@style/Widget.Marvel.SkeletonBlock"
+        android:layout_width="72dp"
+        android:layout_height="80dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_md"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <View
+            style="@style/Widget.Marvel.SkeletonBlock"
+            android:layout_width="160dp"
+            android:layout_height="16dp" />
+
+        <View
+            style="@style/Widget.Marvel.SkeletonBlock"
+            android:layout_width="104dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="@dimen/space_sm" />
+
+        <View
+            style="@style/Widget.Marvel.SkeletonBlock"
+            android:layout_width="64dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/space_md" />
+    </LinearLayout>
+</LinearLayout>

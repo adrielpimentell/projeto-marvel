@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="96dp"
+    android:layout_weight="1"
+    android:background="@drawable/bg_slot_empty"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/space_sm">
+
+    <ImageView
+        android:id="@+id/slot_icon"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_gem"
+        app:tint="@color/icon_inactive" />
+
+    <TextView
+        android:id="@+id/slot_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        tools:text="Espaço livre" />
+
+    <TextView
+        android:id="@+id/slot_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary"
+        android:textAppearance="@style/TextAppearance.Marvel.Caption"
+        android:visibility="gone"
+        tools:text="Toque para remover"
+        tools:visibility="visible"/>
+</LinearLayout>

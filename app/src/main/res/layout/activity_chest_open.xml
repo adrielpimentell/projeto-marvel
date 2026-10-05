@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MergeRootFrame"
+    android:id="@+id/chest_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.ranks.ChestOpenActivity">
+
+    <View
+        android:id="@+id/chest_dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/black" />
+
+    <FrameLayout
+        android:id="@+id/chest_scene"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false">
+
+        <TextView
+            android:id="@+id/chest_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="56dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.Display"
+            android:textColor="@color/text_primary"
+            tools:text="Baú de Vingador" />
+
+        <TextView
+            android:id="@+id/chest_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="96dp"
+            android:text="@string/chest_skip_hint"
+            android:textAppearance="@style/TextAppearance.Marvel.BodySmall"
+            android:textColor="@color/text_secondary" />
+
+        <FrameLayout
+            android:id="@+id/chest_stage"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:clipChildren="false">
+
+            <com.example.marvel.ui.ranks.RaysView
+                android:id="@+id/chest_rays"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0" />
+
+            <ImageView
+                android:id="@+id/chest_glow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:importantForAccessibility="no" />
+
+            <FrameLayout
+                android:id="@+id/chest_group"
+                android:layout_width="200dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:clipChildren="false">
+
+                <ImageView
+                    android:id="@+id/chest_base"
+                    android:layout_width="200dp"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="73dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/chest_art_base" />
+
+                <ImageView
+                    android:id="@+id/chest_lid"
+                    android:layout_width="200dp"
+                    android:layout_height="73dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/chest_art_lid" />
+
+                <ImageView
+                    android:id="@+id/chest_seam"
+                    android:layout_width="220dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginTop="60dp"
+                    android:alpha="0"
+                    android:importantForAccessibility="no" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/card_flip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/space_xl"
+            android:layout_marginEnd="@dimen/space_xl"
+            android:layout_marginBottom="40dp"
+            android:alpha="0">
+
+            <include
+                android:id="@+id/artifact_card"
+                layout="@layout/view_reward_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/surface_high"
+                app:cardCornerRadius="@dimen/corner_lg"
+                app:strokeWidth="2dp"
+                tools:strokeColor="@color/rarity_epic">
+
+                <ImageView
+                    android:id="@+id/card_back_icon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_gem"
+                    app:tint="@color/rarity_epic" />
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/legendary_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alpha="0"
+            android:shadowColor="#CC000000"
+            android:shadowDx="0"
+            android:shadowDy="4"
+            android:shadowRadius="10"
+            android:text="@string/chest_legendary_banner"
+            android:textAppearance="@style/TextAppearance.Marvel.Display"
+            android:textColor="@color/rarity_legendary"
+            android:textSize="52sp"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/chest_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/space_sm"
+            android:layout_marginEnd="@dimen/space_sm"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/debug_slow_motion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_sm"
+                android:text="@string/debug_slow_motion"
+                android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                android:textColor="@color/text_muted" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/debug_replay"
+                style="@style/Widget.Marvel.DebugButton"
+                android:text="@string/debug_replay" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chest_done"
+            style="@style/Widget.Marvel.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginBottom="@dimen/space_md"
+            android:text="@string/chest_collect"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <com.example.marvel.ui.ranks.ParticleBurstView
+        android:id="@+id/chest_particles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/chest_flash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@color/white" />
+</FrameLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/loading"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <include layout="@layout/item_skeleton_row" />
+
+    <include layout="@layout/item_skeleton_row" />
+
+    <include layout="@layout/item_skeleton_row" />
+
+    <include layout="@layout/item_skeleton_row" />
+
+    <include layout="@layout/item_skeleton_row" />
+</LinearLayout>

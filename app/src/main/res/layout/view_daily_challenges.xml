@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_xs"
+    android:paddingTop="@dimen/space_xs"
+    android:paddingEnd="@dimen/space_xs">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding_compact">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:accessibilityHeading="true"
+                    android:text="@string/daily_title"
+                    android:textAppearance="@style/TextAppearance.Marvel.Headline"
+                    android:textColor="@color/red"/>
+
+                <TextView
+                    android:id="@+id/daily_countdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Novos em 5 h 12 min"/>
+            </LinearLayout>
+
+            <include
+                android:id="@+id/daily_row_0"
+                layout="@layout/item_daily_challenge" />
+
+            <include
+                android:id="@+id/daily_row_1"
+                layout="@layout/item_daily_challenge" />
+
+            <include
+                android:id="@+id/daily_row_2"
+                layout="@layout/item_daily_challenge" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/space_md"
+                android:background="@color/divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/card_padding_compact"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/daily_chest_icon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_chest"
+                    app:tint="@color/icon_inactive" />
+
+                <TextView
+                    android:id="@+id/daily_chest_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:layout_weight="1"
+                    android:textColor="@color/text_label"
+                    android:textAppearance="@style/TextAppearance.Marvel.BodySmall"
+                    tools:text="Complete os 3 para ganhar o baú do dia (1/3)"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/daily_chest_open"
+                    style="@style/Widget.Marvel.Button.Compact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:text="@string/daily_chest_open"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/daily_debug_next_day"
+                style="@style/Widget.Marvel.DebugButton"
+                android:layout_marginTop="@dimen/space_sm"
+                android:text="@string/daily_debug_next_day"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/home_survival"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/card_padding_compact">
+
+            <ImageView
+                android:layout_width="@dimen/icon_lg"
+                android:layout_height="@dimen/icon_lg"
+                android:background="@drawable/bg_icon_circle"
+                android:importantForAccessibility="no"
+                android:padding="@dimen/space_sm"
+                android:src="@drawable/ic_shield"
+                app:tint="@color/red" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/card_padding_compact"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_survival_title"
+                    android:textColor="@color/text_primary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Title"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/home_survival_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Recorde: andar 7"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/home_survival_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Marvel.Pill.Accent"
+                android:layout_marginStart="@dimen/space_sm"
+                tools:text="Jogar" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_md"
+        android:layout_marginBottom="@dimen/space_xs"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/section_all"
+        android:textAppearance="@style/TextAppearance.Marvel.TitleLarge" />
+</LinearLayout>

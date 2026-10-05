@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hero_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_sm"
+    android:layout_marginBottom="@dimen/space_sm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding_compact">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/hero_image"
+                android:layout_width="56dp"
+                android:layout_height="70dp"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Image"
+                tools:src="@drawable/placeholder_character" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/card_padding_compact"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/hero_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/text_primary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Title"
+                    android:textStyle="bold"
+                    tools:text="Lucas Jackson"/>
+
+                <TextView
+                    android:id="@+id/hero_real_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Nome real não informado"/>
+
+                <TextView
+                    android:id="@+id/hero_overall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@drawable/bg_pill_red"
+                    android:paddingStart="@dimen/space_sm"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingEnd="@dimen/space_sm"
+                    android:paddingBottom="@dimen/space_xs"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="OVR 24" />
+
+                <TextView
+                    android:id="@+id/hero_artifacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/text_muted"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_gem"
+                    app:drawableTint="@color/red"
+                    tools:text="Artefatos: Garras de Adamantium, Sentido Aranha"
+                    tools:visibility="visible"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm">
+
+                <TextView
+                    android:id="@+id/hero_active_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_pill_red"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/space_sm"
+                    android:paddingTop="@dimen/space_sm"
+                    android:paddingEnd="@dimen/card_padding_compact"
+                    android:paddingBottom="@dimen/space_sm"
+                    android:text="@string/hero_active"
+                    android:textAllCaps="true"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_bolt"
+                    app:drawableTint="@color/red" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/hero_use_button"
+                    style="@style/Widget.Marvel.Button.Outlined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/button_compact_inset"
+                    android:insetBottom="@dimen/button_compact_inset"
+                    android:text="@string/hero_use" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/card_padding_compact"
+            android:layout_marginBottom="@dimen/space_xs"
+            android:background="@drawable/divider_dashed" />
+
+        <include
+            android:id="@+id/upgrade_life"
+            layout="@layout/item_upgrade_row" />
+
+        <include
+            android:id="@+id/upgrade_strength"
+            layout="@layout/item_upgrade_row" />
+
+        <include
+            android:id="@+id/upgrade_speed"
+            layout="@layout/item_upgrade_row" />
+
+        <include
+            android:id="@+id/upgrade_intelligence"
+            layout="@layout/item_upgrade_row" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

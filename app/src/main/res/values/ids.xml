@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="skeleton_pulse" type="id" />
+    <item name="skeleton_watch" type="id" />
+</resources>

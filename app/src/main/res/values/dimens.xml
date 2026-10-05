@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+    <dimen name="screen_margin">16dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_padding_compact">12dp</dimen>
+
+    <dimen name="corner_sm">8dp</dimen>
+    <dimen name="corner_md">12dp</dimen>
+    <dimen name="corner_lg">16dp</dimen>
+    <dimen name="card_stroke_width">1dp</dimen>
+
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_compact_inset">4dp</dimen>
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">24dp</dimen>
+    <dimen name="icon_lg">40dp</dimen>
+
+    <dimen name="trail_side_padding">24dp</dimen>
+    <dimen name="trail_column_width">192dp</dimen>
+    <dimen name="trail_card_width">176dp</dimen>
+    <dimen name="trail_card_height">220dp</dimen>
+    <dimen name="trail_bar_top">244dp</dimen>
+    <dimen name="trail_bar_height">14dp</dimen>
+    <dimen name="trail_marker_size">26dp</dimen>
+    <dimen name="trail_marker_top">238dp</dimen>
+    <dimen name="trail_thresholds_top">270dp</dimen>
+    <dimen name="trail_label_top">302dp</dimen>
+</resources>

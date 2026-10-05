@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1098069261452",
+    "project_id": "marvel-battle-d0908",
+    "storage_bucket": "marvel-battle-d0908.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098069261452:android:e0ac3288132aabe2360fa9",
+        "android_client_info": {
+          "package_name": "com.example.marvel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCopxF2dUeyev9sAmHYZBGnXHEY5GPIsDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

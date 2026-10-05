@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trail_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ranks.RankTrailActivity">
+
+    <LinearLayout
+        android:id="@+id/trail_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingTop="@dimen/card_padding_compact"
+        android:paddingEnd="@dimen/screen_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/player_hud"
+            layout="@layout/view_player_hud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/Widget.Marvel.ScreenTitle"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/trail_title" />
+
+        <TextView
+            style="@style/Widget.Marvel.ScreenSubtitle"
+            android:layout_width="match_parent"
+            android:lineSpacingMultiplier="1.15"
+            android:text="@string/trail_subtitle" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/trail_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_sm"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/trail_footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trail_header">
+
+        <FrameLayout
+            android:id="@+id/trail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="@dimen/space_md"
+            android:paddingBottom="@dimen/space_md">
+
+            <LinearLayout
+                android:id="@+id/trail_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trail_card_height"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/trail_side_padding"
+                android:paddingEnd="@dimen/trail_side_padding" />
+
+            <View
+                android:id="@+id/trail_track"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/trail_bar_height"
+                android:layout_marginStart="@dimen/trail_side_padding"
+                android:layout_marginTop="@dimen/trail_bar_top"
+                android:background="@drawable/bg_trail_track" />
+
+            <View
+                android:id="@+id/trail_fill"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/trail_bar_height"
+                android:layout_marginStart="@dimen/trail_side_padding"
+                android:layout_marginTop="@dimen/trail_bar_top"
+                android:background="@drawable/bg_trail_fill" />
+
+            <FrameLayout
+                android:id="@+id/trail_ticks"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trail_bar_height"
+                android:layout_marginTop="@dimen/trail_bar_top" />
+
+            <View
+                android:id="@+id/trail_marker"
+                android:layout_width="@dimen/trail_marker_size"
+                android:layout_height="@dimen/trail_marker_size"
+                android:layout_marginTop="@dimen/trail_marker_top"
+                android:background="@drawable/bg_trail_marker" />
+
+            <LinearLayout
+                android:id="@+id/trail_thresholds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trail_thresholds_top"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/trail_side_padding"
+                android:paddingEnd="@dimen/trail_side_padding" />
+
+            <TextView
+                android:id="@+id/trail_marker_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/trail_label_top"
+                android:background="@drawable/bg_pill_red"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/space_sm"
+                android:paddingTop="@dimen/space_xs"
+                android:paddingEnd="@dimen/card_padding_compact"
+                android:paddingBottom="@dimen/space_xs"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_trophy"
+                app:drawableTint="@color/red"
+                tools:text="Você · 120" />
+        </FrameLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/trail_footer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/space_sm"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/debug_bar"
+            layout="@layout/view_debug_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_sm"
+            android:layout_weight="1" />
+
+        <Space
+            android:id="@+id/trail_footer_space"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/trail_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/card_padding_compact"
+            android:paddingTop="@dimen/space_sm"
+            android:paddingEnd="@dimen/space_md"
+            android:paddingBottom="@dimen/space_sm">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_trophy"
+                app:tint="@color/red" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_sm"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/trail_total_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Marvel.Display"
+                    android:textColor="@color/text_primary"
+                    tools:text="1.250"/>
+
+                <TextView
+                    android:id="@+id/trail_total_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_secondary"
+                    android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                    tools:text="Faltam 250 para Vingador Supremo"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/view_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/card_padding_compact"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

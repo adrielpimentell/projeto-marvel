@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingStart="@dimen/space_md"
+    android:paddingTop="@dimen/space_lg"
+    android:paddingEnd="@dimen/space_md"
+    android:paddingBottom="@dimen/space_md"
+    android:textAppearance="@style/TextAppearance.Marvel.Body"
+    android:textColor="@color/text_secondary"
+    tools:text="Nenhum herói de X-Men encontrado" />

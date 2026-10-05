@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="@dimen/space_xs">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/member_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Image"
+            tools:src="@drawable/placeholder_character" />
+
+        <ImageView
+            android:id="@+id/member_lock"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="@dimen/space_sm"
+            android:background="@drawable/bg_circle_scrim"
+            android:importantForAccessibility="no"
+            android:padding="@dimen/space_xs"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/text_muted" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/member_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="2"
+        android:textColor="@color/text_primary"
+        android:textAppearance="@style/TextAppearance.Marvel.Caption"
+        tools:text="Captain America"/>
+</LinearLayout>
