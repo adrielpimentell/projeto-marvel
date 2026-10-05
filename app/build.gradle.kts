@@ -2,6 +2,7 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.services)
 }
 
 val localProperties = Properties().apply {
@@ -59,6 +60,10 @@ dependencies {
     implementation(libs.okhttp)
 
     implementation(libs.glide)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 
     testImplementation(libs.junit)
     testImplementation(libs.okhttp.mockwebserver)

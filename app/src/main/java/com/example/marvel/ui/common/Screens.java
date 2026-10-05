@@ -28,4 +28,13 @@ public final class Screens {
             return WindowInsetsCompat.CONSUMED;
         });
     }
+
+    public static void padForSystemBarsAndKeyboard(View view) {
+        ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            return WindowInsetsCompat.CONSUMED;
+        });
+    }
 }

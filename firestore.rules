@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function validPlayerName(name) {
+      return name is string && name.matches('^[A-Za-z0-9_]{3,20}$');
+    }
+
+    function userPath(uid) {
+      return /databases/$(database)/documents/users/$(uid);
+    }
+
+    function namePath(name) {
+      return /databases/$(database)/documents/usernames/$(name.lower());
+    }
+
+    match /usernames/{nameKey} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if signedIn()
+        && nameKey.matches('^[a-z0-9_]{3,20}$')
+        && request.resource.data.keys().hasOnly(['uid'])
+        && request.resource.data.uid == request.auth.uid
+        && !exists(userPath(request.auth.uid))
+        && getAfter(userPath(request.auth.uid)).data.nomeJogador.lower() == nameKey;
+      allow update, delete: if false;
+    }
+
+    match /users/{uid} {
+      allow get: if isOwner(uid);
+      allow list: if false;
+      allow create: if isOwner(uid)
+        && request.resource.data.keys().hasOnly(['nomeJogador'])
+        && validPlayerName(request.resource.data.nomeJogador)
+        && getAfter(namePath(request.resource.data.nomeJogador)).data.uid == uid;
+      allow update, delete: if false;
+    }
+  }
+}

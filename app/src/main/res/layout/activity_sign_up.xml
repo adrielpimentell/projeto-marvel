@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sign_up_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.auth.SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingTop="@dimen/space_xl"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingBottom="@dimen/space_lg">
+
+        <TextView
+            android:id="@+id/sign_up_title"
+            style="@style/Widget.Marvel.ScreenTitle"
+            android:accessibilityHeading="true"
+            android:text="@string/sign_up_title" />
+
+        <TextView
+            android:id="@+id/sign_up_subtitle"
+            style="@style/Widget.Marvel.ScreenSubtitle"
+            android:layout_width="match_parent"
+            android:text="@string/sign_up_subtitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sign_up_email_layout"
+            style="@style/Widget.Marvel.TextField"
+            android:layout_marginTop="@dimen/space_lg"
+            android:hint="@string/auth_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_email"
+                style="@style/Widget.Marvel.TextField.Input"
+                android:autofillHints="emailAddress"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sign_up_name_layout"
+            style="@style/Widget.Marvel.TextField"
+            android:hint="@string/auth_player_name"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:helperText="@string/auth_player_name_helper"
+            app:helperTextEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_name"
+                style="@style/Widget.Marvel.TextField.Input"
+                android:digits="@string/auth_player_name_chars"
+                android:importantForAutofill="no"
+                android:imeOptions="actionNext"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sign_up_password_layout"
+            style="@style/Widget.Marvel.TextField"
+            android:hint="@string/auth_password"
+            app:endIconMode="password_toggle"
+            app:helperText="@string/auth_password_helper"
+            app:helperTextEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_password"
+                style="@style/Widget.Marvel.TextField.Input"
+                android:autofillHints="newPassword"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sign_up_confirm_layout"
+            style="@style/Widget.Marvel.TextField"
+            android:hint="@string/auth_password_confirm"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sign_up_confirm"
+                style="@style/Widget.Marvel.TextField.Input"
+                android:autofillHints="newPassword"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/sign_up_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:accessibilityLiveRegion="polite"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.Body"
+            android:textColor="?attr/colorError"
+            android:visibility="gone"
+            tools:text="Esse nome de jogador já existe"
+            tools:visibility="visible" />
+
+        <include
+            android:id="@+id/sign_up_submit"
+            layout="@layout/view_loading_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sign_up_go_login"
+            style="@style/Widget.Marvel.LinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_md"
+            android:text="@string/sign_up_go_login" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

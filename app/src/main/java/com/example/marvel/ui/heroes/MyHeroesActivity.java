@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.marvel.ui.common.Screens;
 import com.example.marvel.R;
+import com.example.marvel.data.auth.AuthRepository;
 import com.example.marvel.data.model.NamedRef;
 import com.example.marvel.game.GameBalance;
 import com.example.marvel.game.OwnedHero;
 import com.example.marvel.game.PlayerState;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.ui.artifacts.ArtifactsActivity;
+import com.example.marvel.ui.auth.LoginActivity;
+import com.example.marvel.ui.auth.SignUpActivity;
 import com.example.marvel.ui.common.Families;
 import com.example.marvel.ui.common.FamilyFilter;
 import com.example.marvel.ui.common.MainNav;
@@ -25,6 +28,7 @@ import com.example.marvel.ui.common.SearchBar;
 import com.example.marvel.ui.common.SearchText;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -41,6 +45,7 @@ public class MyHeroesActivity extends AppCompatActivity implements MyHeroesAdapt
     private SearchBar searchBar;
     private FamilyFilter familyFilter;
     private TextView emptyText;
+    private TextView accountText;
     private String query = "";
 
     @Override
@@ -81,12 +86,53 @@ public class MyHeroesActivity extends AppCompatActivity implements MyHeroesAdapt
         });
 
         MainNav.setup(this, bottomNav, R.id.nav_my_heroes, () -> list.smoothScrollToPosition(0));
+
+        accountText = findViewById(R.id.my_heroes_account);
+        findViewById(R.id.my_heroes_sign_out).setOnClickListener(v -> confirmSignOut());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         refresh();
+        bindAccount();
+    }
+
+    private void bindAccount() {
+        AuthRepository.getInstance(this).loadPlayerName(new AuthRepository.Callback<String>() {
+            @Override
+            public void onSuccess(String name) {
+                if (isFinishing() || isDestroyed()) return;
+                if (name == null) {
+                    accountText.setText(R.string.account_choose_name);
+                    accountText.setOnClickListener(v ->
+                            startActivity(SignUpActivity.newChooseNameIntent(MyHeroesActivity.this)));
+                } else {
+                    accountText.setText(getString(R.string.account_playing_as, name));
+                    accountText.setOnClickListener(null);
+                    accountText.setClickable(false);
+                }
+            }
+
+            @Override
+            public void onError(int messageRes) {
+                if (isFinishing() || isDestroyed()) return;
+                accountText.setText(null);
+            }
+        });
+    }
+
+    private void confirmSignOut() {
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.account_sign_out_title)
+                .setMessage(R.string.account_sign_out_message)
+                .setNegativeButton(R.string.action_cancel, null)
+                .setPositiveButton(R.string.account_sign_out, (dialog, which) -> {
+                    AuthRepository.getInstance(this).signOut();
+                    startActivity(LoginActivity.newSignedOutIntent(this));
+                    finish();
+                })
+                .show();
     }
 
     @Override

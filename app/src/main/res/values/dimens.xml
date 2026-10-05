@@ -31,4 +31,5 @@
     <dimen name="trail_marker_top">238dp</dimen>
     <dimen name="trail_thresholds_top">270dp</dimen>
     <dimen name="trail_label_top">302dp</dimen>
+    <dimen name="auth_logo_size">96dp</dimen>
 </resources>

@@ -3,6 +3,7 @@ package com.example.marvel.game;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.marvel.data.auth.Session;
 import com.example.marvel.data.model.Character;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
@@ -18,24 +19,32 @@ public class PlayerStore {
 
     private static final String PREFS_NAME = "player_save";
     private static final String KEY_STATE = "state_json";
+    private static final String ACCOUNT_PREFS_PREFIX = "player_save_";
+    private static final String DEVICE_PREFS_NAME = "player_save_contas";
+    private static final String KEY_LEGACY_OWNER = "dono_do_save_antigo";
+    private static final String NO_ACCOUNT = "sem_conta";
 
     private static PlayerStore instance;
 
     private final Context appContext;
+    private final String account;
     private final SharedPreferences prefs;
     private final Gson gson = new Gson();
     private PlayerState state;
 
     public static synchronized PlayerStore getInstance(Context context) {
-        if (instance == null) {
-            instance = new PlayerStore(context.getApplicationContext());
+        String uid = Session.uid();
+        String account = uid == null ? NO_ACCOUNT : uid;
+        if (instance == null || !instance.account.equals(account)) {
+            instance = new PlayerStore(context.getApplicationContext(), account);
         }
         return instance;
     }
 
-    private PlayerStore(Context appContext) {
+    private PlayerStore(Context appContext, String account) {
         this.appContext = appContext;
-        prefs = appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        this.account = account;
+        prefs = appContext.getSharedPreferences(ACCOUNT_PREFS_PREFIX + account, Context.MODE_PRIVATE);
         state = load();
     }
 
@@ -203,6 +212,7 @@ public class PlayerStore {
     }
 
     private PlayerState load() {
+        boolean ownsLegacySave = adoptLegacySave();
         String json = prefs.getString(KEY_STATE, null);
         PlayerState loaded = null;
         if (json != null) {
@@ -217,10 +227,35 @@ public class PlayerStore {
         }
         loaded.repair();
         if (loaded.needsLegacyScoreImport()) {
-            ScoreStore legacy = new ScoreStore(appContext);
-            loaded.importLegacyScore(legacy.getScore(), legacy.getWins(), legacy.getLosses());
+            if (ownsLegacySave) {
+                ScoreStore legacy = new ScoreStore(appContext);
+                loaded.importLegacyScore(legacy.getScore(), legacy.getWins(), legacy.getLosses());
+            } else {
+                loaded.importLegacyScore(0, 0, 0);
+            }
         }
         prefs.edit().putString(KEY_STATE, gson.toJson(loaded)).apply();
         return loaded;
+    }
+
+    private boolean adoptLegacySave() {
+        if (NO_ACCOUNT.equals(account)) {
+            return false;
+        }
+        SharedPreferences device = appContext.getSharedPreferences(DEVICE_PREFS_NAME, Context.MODE_PRIVATE);
+        String owner = device.getString(KEY_LEGACY_OWNER, null);
+        if (owner == null) {
+            if (!device.edit().putString(KEY_LEGACY_OWNER, account).commit()) {
+                return false;
+            }
+        } else if (!owner.equals(account)) {
+            return false;
+        }
+        String legacyJson = appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+                .getString(KEY_STATE, null);
+        if (legacyJson == null || prefs.contains(KEY_STATE)) {
+            return true;
+        }
+        return prefs.edit().putString(KEY_STATE, legacyJson).commit();
     }
 }

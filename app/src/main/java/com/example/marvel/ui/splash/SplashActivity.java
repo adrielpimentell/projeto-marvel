@@ -21,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.example.marvel.MainActivity;
+import com.example.marvel.data.auth.Session;
+import com.example.marvel.ui.auth.LoginActivity;
 import com.example.marvel.R;
 import com.example.marvel.game.GameBalance;
 
@@ -186,7 +188,8 @@ public class SplashActivity extends AppCompatActivity implements TextureView.Sur
         releasePlayer();
         ActivityOptions fade = ActivityOptions.makeCustomAnimation(this,
                 R.anim.splash_fade_in, R.anim.splash_fade_out);
-        startActivity(new Intent(this, MainActivity.class), fade.toBundle());
+        Class<?> next = Session.isSignedIn() ? MainActivity.class : LoginActivity.class;
+        startActivity(new Intent(this, next), fade.toBundle());
         finish();
     }
 }

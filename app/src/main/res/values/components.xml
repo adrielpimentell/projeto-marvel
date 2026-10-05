@@ -72,4 +72,36 @@
         <item name="android:background">@drawable/bg_skeleton</item>
         <item name="android:importantForAccessibility">no</item>
     </style>
+    <style name="Widget.Marvel.TextField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_md</item>
+        <item name="boxBackgroundColor">@color/surface</item>
+        <item name="boxStrokeColor">@color/text_field_stroke</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_md</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_md</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_md</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_md</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+        <item name="hintTextColor">@color/red</item>
+        <item name="endIconTint">@color/text_secondary</item>
+        <item name="helperTextTextColor">@color/text_secondary</item>
+        <item name="counterTextColor">@color/text_secondary</item>
+    </style>
+
+    <style name="Widget.Marvel.TextField.Input" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Marvel.BodyLarge</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Widget.Marvel.LinkButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">@dimen/touch_target</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextAppearance.Marvel.Body</item>
+        <item name="rippleColor">@color/red_translucent</item>
+    </style>
 </resources>

@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.marvel.data.auth.Session;
+import com.example.marvel.ui.auth.LoginActivity;
 import com.example.marvel.ui.common.Screens;
 import com.example.marvel.data.model.Character;
 import com.example.marvel.data.model.CharacterPage;
@@ -76,6 +78,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!Session.isSignedIn()) {
+            startActivity(LoginActivity.newSignedOutIntent(this));
+            finish();
+            return;
+        }
         Screens.edgeToEdge(this);
         setContentView(R.layout.activity_main);
 
@@ -108,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        searchBar.release();
+        if (searchBar != null) searchBar.release();
         if (currentRequest != null) currentRequest.cancel();
         if (heroInfoRequest != null) heroInfoRequest.cancel();
         super.onDestroy();
