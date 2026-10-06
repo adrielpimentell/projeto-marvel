@@ -16,6 +16,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.marvel.game.Season;
+import com.example.marvel.data.season.SeasonRepository;
 import com.example.marvel.ui.common.UiTokens;
 import com.example.marvel.ui.common.Screens;
 import com.example.marvel.ui.common.Images;
@@ -239,9 +241,11 @@ public class BattleActivity extends AppCompatActivity {
             result = BattleEngine.fight(hero.getBattleAttributes(), Loadout.artifactsOf(hero),
                     enemyAttributes, new Random());
 
+            playerStore.ensureSeason(Season.currentId());
             rankBefore = playerStore.get().getRank();
             addDailyMessages(playerStore.applyBattle(result,
                     BattleFacts.of(result, hero, enemy), DailyClock.today()));
+            SeasonRepository.getInstance(this).sync();
         }
 
         loadingView.setVisibility(View.GONE);

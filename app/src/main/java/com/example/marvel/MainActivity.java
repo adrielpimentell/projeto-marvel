@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.marvel.game.Season;
+import com.example.marvel.data.season.SeasonRepository;
 import com.example.marvel.data.auth.Session;
 import com.example.marvel.ui.auth.LoginActivity;
 import com.example.marvel.ui.common.Screens;
@@ -103,8 +105,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        playerStore.ensureSeason(Season.currentId());
         updatePlayerHud();
         dailyHeader.onResume();
+        SeasonRepository.getInstance(this).refresh(() -> {
+            if (!isFinishing() && !isDestroyed()) updatePlayerHud();
+        });
     }
 
     @Override

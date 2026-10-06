@@ -22,14 +22,9 @@
             android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/debug_add_trophies_small"
+            android:id="@+id/debug_add_trophies"
             style="@style/Widget.Marvel.DebugButton"
-            android:text="@string/debug_add_trophies_small" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/debug_add_trophies_big"
-            style="@style/Widget.Marvel.DebugButton"
-            android:text="@string/debug_add_trophies_big" />
+            android:text="@string/debug_add_trophies" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/debug_add_coins"

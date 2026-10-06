@@ -128,11 +128,28 @@ public class PlayerStore {
         return saved ? reward[0] : null;
     }
 
-    public boolean addTrophies(int delta) {
+    public boolean addDebugTrophies(int amount) {
         return change(s -> {
-            s.addTrophies(delta);
+            s.addDebugTrophies(amount);
             return true;
         });
+    }
+
+    public boolean ensureSeason(String currentSeason) {
+        return change(s -> s.ensureSeason(currentSeason));
+    }
+
+    public TrophySync claimTrophySync() {
+        TrophySync[] sync = {TrophySync.NONE};
+        boolean saved = change(s -> {
+            sync[0] = s.claimTrophySync();
+            return !sync[0].isEmpty();
+        });
+        return saved ? sync[0] : TrophySync.NONE;
+    }
+
+    public boolean adoptServerTrophies(String season, Integer trophies) {
+        return change(s -> s.adoptServerTrophies(season, trophies));
     }
 
     public ChestReward openChest(int rank) {

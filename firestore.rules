@@ -23,6 +23,17 @@ service cloud.firestore {
       return /databases/$(database)/documents/usernames/$(name.lower());
     }
 
+    function validSeason(seasonId) {
+      return seasonId.matches('^[0-9]{4}-W[0-9]{2}$');
+    }
+
+    function validStep(before, after) {
+      return after is int
+        && (after == before + 10
+          || (before >= 5 && after == before - 5)
+          || (before < 5 && after == 0));
+    }
+
     match /usernames/{nameKey} {
       allow get: if true;
       allow list: if false;
@@ -43,6 +54,22 @@ service cloud.firestore {
         && validPlayerName(request.resource.data.nomeJogador)
         && getAfter(namePath(request.resource.data.nomeJogador)).data.uid == uid;
       allow update, delete: if false;
+    }
+
+    match /temporadas/{seasonId}/jogadores/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid)
+        && validSeason(seasonId)
+        && request.resource.data.keys().hasAll(['nomeJogador', 'trofeus', 'atualizadoEm'])
+        && request.resource.data.keys().hasOnly(['nomeJogador', 'trofeus', 'atualizadoEm'])
+        && request.resource.data.nomeJogador == get(userPath(uid)).data.nomeJogador
+        && request.resource.data.trofeus in [0, 10]
+        && request.resource.data.atualizadoEm == request.time;
+      allow update: if isOwner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['trofeus', 'atualizadoEm'])
+        && validStep(resource.data.trofeus, request.resource.data.trofeus)
+        && request.resource.data.atualizadoEm == request.time;
+      allow delete: if false;
     }
   }
 }

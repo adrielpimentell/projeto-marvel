@@ -240,8 +240,7 @@
     </string-array>
 
     <string name="debug_label">Depuração</string>
-    <string name="debug_add_trophies_small">+1.000 troféus</string>
-    <string name="debug_add_trophies_big">+10.000 troféus</string>
+    <string name="debug_add_trophies">+100 troféus</string>
     <string name="debug_add_coins">+1000 moedas</string>
     <string name="debug_add_coins_big">+50.000 moedas</string>
 

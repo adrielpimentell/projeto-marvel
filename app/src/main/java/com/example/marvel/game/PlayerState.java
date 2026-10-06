@@ -26,6 +26,10 @@ public class PlayerState {
     private int bestRank;
     private boolean legacyScoreImported;
 
+    private String season;
+    private boolean seasonPlayed;
+    private Integer seasonSynced;
+
     private List<Integer> openedChests = new ArrayList<>();
     private List<String> artifacts = new ArrayList<>();
     private Map<Integer, Integer> teamMilestonesClaimed = new HashMap<>();
@@ -217,8 +221,56 @@ public class PlayerState {
     void applyBattle(BattleResult result) {
         addCoins(result.getCoins());
         addTrophies(result.getTrophies());
+        seasonPlayed = true;
         if (result.isHeroWinner()) wins++;
         else losses++;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public boolean isSeasonPlayed() {
+        return seasonPlayed;
+    }
+
+    boolean ensureSeason(String currentSeason) {
+        if (currentSeason.equals(season)) return false;
+        season = currentSeason;
+        trophies = GameBalance.MIN_TROPHIES;
+        bestRank = 0;
+        openedChests.clear();
+        seasonPlayed = false;
+        seasonSynced = null;
+        return true;
+    }
+
+    void addDebugTrophies(int amount) {
+        addTrophies(amount);
+        seasonPlayed = true;
+    }
+
+    TrophySync claimTrophySync() {
+        if (season == null || !seasonPlayed) return TrophySync.NONE;
+        TrophySync sync = TrophySync.between(season, seasonSynced, trophies);
+        if (!sync.isEmpty()) seasonSynced = trophies;
+        return sync;
+    }
+
+    boolean adoptServerTrophies(String serverSeason, Integer serverTrophies) {
+        if (!serverSeason.equals(season)) return false;
+        if (serverTrophies == null) {
+            if (seasonSynced == null) return false;
+            seasonSynced = null;
+            return true;
+        }
+        int value = Math.max(GameBalance.MIN_TROPHIES, serverTrophies);
+        if (value == trophies && Integer.valueOf(value).equals(seasonSynced) && seasonPlayed) return false;
+        trophies = value;
+        bestRank = Math.max(bestRank, getRank());
+        seasonPlayed = true;
+        seasonSynced = value;
+        return true;
     }
 
     boolean needsLegacyScoreImport() {
