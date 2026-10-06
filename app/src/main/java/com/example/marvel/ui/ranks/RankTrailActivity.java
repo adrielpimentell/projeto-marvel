@@ -26,9 +26,7 @@ import com.example.marvel.game.PlayerState;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.game.Ranks;
 import com.example.marvel.ui.common.DebugTools;
-import com.example.marvel.ui.common.MainNav;
 import com.example.marvel.ui.common.PlayerHud;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
@@ -79,8 +77,8 @@ public class RankTrailActivity extends AppCompatActivity {
 
         buildTrail();
 
-        BottomNavigationView nav = findViewById(R.id.bottom_nav);
-        MainNav.setup(this, nav, R.id.nav_ranks, () -> scrollToMarker(true));
+        findViewById(R.id.bottom_nav).setVisibility(View.GONE);
+        findViewById(R.id.trail_back).setOnClickListener(v -> finish());
         DebugTools.setup(findViewById(R.id.debug_bar), playerStore, this::refresh);
         playerHud.findViewById(R.id.hud_rank).setOnClickListener(v -> scrollToMarker(true));
     }

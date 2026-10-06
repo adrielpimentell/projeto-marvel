@@ -152,4 +152,10 @@ public final class GameBalance {
     public static final int SURVIVAL_ARMOR_HP_PERCENT = 20;
     public static final int SURVIVAL_MEDKIT_HEAL_PERCENT = 50;
     public static final int SURVIVAL_ENEMY_POOL_PAGES = 5;
+
+    public static final int RANKING_SIZE = 50;
+    public static final Artifact.Rarity[] SEASON_PRIZE_RARITIES = {
+            Artifact.Rarity.LEGENDARY, Artifact.Rarity.EPIC, Artifact.Rarity.RARE};
+    public static final int[] SEASON_PRIZE_COINS = {500, 250, 100};
+    public static final Artifact.Rarity SEASON_PRIZE_OTHERS_RARITY = Artifact.Rarity.COMMON;
 }

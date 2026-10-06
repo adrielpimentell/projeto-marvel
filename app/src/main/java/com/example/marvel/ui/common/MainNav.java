@@ -8,6 +8,7 @@ import com.example.marvel.R;
 import com.example.marvel.ui.album.AlbumActivity;
 import com.example.marvel.ui.heroes.MyHeroesActivity;
 import com.example.marvel.ui.market.MarketActivity;
+import com.example.marvel.ui.ranking.RankingActivity;
 import com.example.marvel.ui.ranks.RankTrailActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +30,9 @@ public final class MainNav {
     }
 
     public static void openRanks(Activity from) {
-        open(from, R.id.nav_ranks);
+        if (from instanceof RankTrailActivity) return;
+        from.startActivity(new Intent(from, RankTrailActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
     }
 
     private static void open(Activity from, int itemId) {
@@ -40,8 +43,8 @@ public final class MainNav {
             target = MyHeroesActivity.class;
         } else if (itemId == R.id.nav_album) {
             target = AlbumActivity.class;
-        } else if (itemId == R.id.nav_ranks) {
-            target = RankTrailActivity.class;
+        } else if (itemId == R.id.nav_ranking) {
+            target = RankingActivity.class;
         } else {
             target = MainActivity.class;
         }
@@ -56,6 +59,6 @@ public final class MainNav {
     private static boolean isTab(Activity activity) {
         return activity instanceof MainActivity || activity instanceof MarketActivity
                 || activity instanceof MyHeroesActivity || activity instanceof AlbumActivity
-                || activity instanceof RankTrailActivity;
+                || activity instanceof RankingActivity;
     }
 }

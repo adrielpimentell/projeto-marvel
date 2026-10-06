@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ranking_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ranking.RankingActivity">
+
+    <LinearLayout
+        android:id="@+id/ranking_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingTop="@dimen/card_padding_compact"
+        android:paddingEnd="@dimen/screen_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/player_hud"
+            layout="@layout/view_player_hud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:baselineAligned="false"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Widget.Marvel.ScreenTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:accessibilityHeading="true"
+                android:text="@string/ranking_title" />
+
+            <TextView
+                android:id="@+id/ranking_countdown"
+                style="@style/Widget.Marvel.Pill.Accent"
+                android:layout_marginBottom="@dimen/space_sm"
+                android:accessibilityLiveRegion="none"
+                android:drawablePadding="@dimen/space_xs"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/ic_clock"
+                app:drawableTint="@color/red"
+                tools:text="Termina em 4d 12h" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ranking_subtitle"
+            style="@style/Widget.Marvel.ScreenSubtitle"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="Top 50 da semana · 05/10 a 11/10" />
+
+        <TextView
+            android:id="@+id/ranking_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="@string/ranking_offline"
+            android:textAppearance="@style/TextAppearance.Marvel.Caption"
+            android:textColor="?attr/colorError"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <com.example.marvel.ui.common.PullToRefreshLayout
+        android:id="@+id/ranking_pull"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_sm"
+        app:layout_constraintBottom_toTopOf="@id/ranking_me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ranking_header">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ranking_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="always"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingBottom="@dimen/space_sm" />
+    </com.example.marvel.ui.common.PullToRefreshLayout>
+
+    <include
+        android:id="@+id/ranking_skeleton"
+        layout="@layout/view_skeleton_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/space_sm"
+        android:layout_marginEnd="@dimen/screen_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ranking_header" />
+
+    <include
+        android:id="@+id/ranking_state"
+        layout="@layout/view_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/ranking_me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ranking_header" />
+
+    <include
+        android:id="@+id/ranking_me"
+        layout="@layout/item_ranking_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/space_sm"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/view_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/card_padding_compact"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

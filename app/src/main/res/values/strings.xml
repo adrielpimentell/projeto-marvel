@@ -266,7 +266,7 @@
     <string name="nav_heroes">Heróis</string>
     <string name="nav_market">Mercado</string>
     <string name="nav_my_heroes">Meus Heróis</string>
-    <string name="nav_ranks">Patentes</string>
+    <string name="nav_ranking">Ranking</string>
     <string name="nav_album">Álbum de Equipes</string>
 
     <string name="album_title">Álbum</string>
@@ -471,4 +471,21 @@
     <string name="account_sign_out">Sair</string>
     <string name="account_sign_out_title">Sair da conta?</string>
     <string name="account_sign_out_message">Seu progresso continua salvo neste aparelho. Para voltar, entre com o mesmo e-mail.</string>
+    <string name="ranking_title">Ranking</string>
+    <string name="ranking_subtitle">Top %1$d da semana · %2$s a %3$s</string>
+    <string name="ranking_ends_in">Termina em %1$s</string>
+    <string name="ranking_time_days">%1$dd %2$dh</string>
+    <string name="ranking_time_hours">%1$dh %2$dmin</string>
+    <string name="ranking_time_minutes">%1$dmin</string>
+    <string name="ranking_offline">Sem conexão: mostrando o último ranking salvo.</string>
+    <string name="ranking_error">Não deu para carregar o ranking. Tente de novo.</string>
+    <string name="ranking_empty_title">Ninguém jogou ainda</string>
+    <string name="ranking_empty">Vença uma batalha nesta semana e apareça no topo.</string>
+    <string name="ranking_refresh">Atualizar ranking</string>
+    <string name="ranking_prize">Prêmio: baú %1$s + %2$s moedas</string>
+    <string name="ranking_you">%1$s (você)</string>
+    <string name="ranking_me_not_played">Jogue uma batalha para entrar no ranking</string>
+    <string name="ranking_me_loading">Calculando sua posição…</string>
+    <string name="ranking_no_position">—</string>
+    <string name="ranking_row_description">%1$sº lugar: %2$s, patente %3$s, %4$s troféus</string>
 </resources>

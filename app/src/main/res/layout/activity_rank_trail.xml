@@ -25,10 +25,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            style="@style/Widget.Marvel.ScreenTitle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_sm"
-            android:text="@string/trail_title" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/trail_back"
+                style="@style/Widget.Marvel.IconButton"
+                android:layout_marginStart="@dimen/back_button_inset"
+                android:contentDescription="@string/action_back"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                style="@style/Widget.Marvel.ScreenTitle"
+                android:layout_marginStart="@dimen/space_xs"
+                android:accessibilityHeading="true"
+                android:text="@string/trail_title" />
+        </LinearLayout>
 
         <TextView
             style="@style/Widget.Marvel.ScreenSubtitle"

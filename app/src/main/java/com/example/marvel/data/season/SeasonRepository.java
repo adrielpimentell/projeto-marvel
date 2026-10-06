@@ -1,20 +1,43 @@
 package com.example.marvel.data.season;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.marvel.R;
 import com.example.marvel.data.auth.AuthRepository;
 import com.example.marvel.data.auth.Session;
+import com.example.marvel.game.GameBalance;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.game.TrophySync;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.AggregateQuerySnapshot;
+import com.google.firebase.firestore.AggregateSource;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.Source;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class SeasonRepository {
+
+    public interface Callback<T> {
+
+        void onSuccess(T value);
+
+        void onError(int messageRes);
+    }
+
+    private static final String TAG = "SeasonRepository";
 
     public static final String SEASONS = "temporadas";
     public static final String PLAYERS = "jogadores";
@@ -40,7 +63,88 @@ public final class SeasonRepository {
     }
 
     public DocumentReference playerDoc(String season, String uid) {
-        return db.collection(SEASONS).document(season).collection(PLAYERS).document(uid);
+        return players(season).document(uid);
+    }
+
+    private CollectionReference players(String season) {
+        return db.collection(SEASONS).document(season).collection(PLAYERS);
+    }
+
+    public void loadRanking(String season, Callback<RankingPage> callback) {
+        players(season)
+                .orderBy(FIELD_TROPHIES, Query.Direction.DESCENDING)
+                .orderBy(FIELD_UPDATED_AT, Query.Direction.ASCENDING)
+                .limit(GameBalance.RANKING_SIZE)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    List<RankingEntry> entries = new ArrayList<>();
+                    for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                        Long trophies = doc.getLong(FIELD_TROPHIES);
+                        entries.add(new RankingEntry(doc.getId(), playerName(doc),
+                                trophies == null ? 0 : trophies.intValue(), entries.size() + 1));
+                    }
+                    callback.onSuccess(new RankingPage(entries, snapshot.getMetadata().isFromCache()));
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "ranking", e);
+                    callback.onError(messageFor(e));
+                });
+    }
+
+    public void loadMyPosition(String season, String uid, RankingPage page,
+                               Callback<RankingEntry> callback) {
+        RankingEntry inTop = page.find(uid);
+        if (inTop != null) {
+            callback.onSuccess(inTop);
+            return;
+        }
+        playerDoc(season, uid).get()
+                .addOnSuccessListener(doc -> {
+                    Long trophies = doc.getLong(FIELD_TROPHIES);
+                    Timestamp updatedAt = doc.getTimestamp(FIELD_UPDATED_AT,
+                            DocumentSnapshot.ServerTimestampBehavior.ESTIMATE);
+                    if (!doc.exists() || trophies == null || updatedAt == null) {
+                        callback.onSuccess(null);
+                        return;
+                    }
+                    Query all = players(season);
+                    Task<AggregateQuerySnapshot> above = all.whereGreaterThan(FIELD_TROPHIES, trophies)
+                            .count().get(AggregateSource.SERVER);
+                    Task<AggregateQuerySnapshot> tiedBefore = all.whereEqualTo(FIELD_TROPHIES, trophies)
+                            .whereLessThan(FIELD_UPDATED_AT, updatedAt)
+                            .count().get(AggregateSource.SERVER);
+                    Tasks.whenAllSuccess(above, tiedBefore)
+                            .addOnSuccessListener(results -> {
+                                long ahead = ((AggregateQuerySnapshot) results.get(0)).getCount()
+                                        + ((AggregateQuerySnapshot) results.get(1)).getCount();
+                                callback.onSuccess(new RankingEntry(uid, playerName(doc),
+                                        trophies.intValue(), (int) ahead + 1));
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.w(TAG, "position", e);
+                                callback.onError(messageFor(e));
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "my doc", e);
+                    callback.onError(messageFor(e));
+                });
+    }
+
+    private static String playerName(DocumentSnapshot doc) {
+        String name = doc.getString(AuthRepository.FIELD_PLAYER_NAME);
+        return name == null ? "" : name;
+    }
+
+    private static int messageFor(Exception e) {
+        if (e instanceof FirebaseFirestoreException) {
+            FirebaseFirestoreException.Code code = ((FirebaseFirestoreException) e).getCode();
+            if (code == FirebaseFirestoreException.Code.UNAVAILABLE
+                    || code == FirebaseFirestoreException.Code.DEADLINE_EXCEEDED) {
+                return R.string.auth_error_no_connection;
+            }
+        }
+        return R.string.ranking_error;
     }
 
     public void sync() {

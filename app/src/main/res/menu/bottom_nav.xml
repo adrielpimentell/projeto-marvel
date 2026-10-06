@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_album"
         android:title="@string/nav_album" />
     <item
-        android:id="@+id/nav_ranks"
-        android:icon="@drawable/ic_medal"
-        android:title="@string/nav_ranks" />
+        android:id="@+id/nav_ranking"
+        android:icon="@drawable/ic_leaderboard"
+        android:title="@string/nav_ranking" />
 </menu>

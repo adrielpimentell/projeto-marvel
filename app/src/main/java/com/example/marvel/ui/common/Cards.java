@@ -14,14 +14,19 @@ public final class Cards {
     }
 
     public static void highlight(MaterialCardView card, boolean on) {
-        Context context = card.getContext();
         if (on) {
-            float density = context.getResources().getDisplayMetrics().density;
-            card.setStrokeColor(ColorStateList.valueOf(context.getColor(R.color.red)));
-            card.setStrokeWidth(Math.round(HIGHLIGHT_DP * density));
-        } else {
-            card.setStrokeColor(ColorStateList.valueOf(context.getColor(R.color.card_stroke)));
-            card.setStrokeWidth(context.getResources().getDimensionPixelSize(R.dimen.card_stroke_width));
+            outline(card, R.color.red);
+            return;
         }
+        Context context = card.getContext();
+        card.setStrokeColor(ColorStateList.valueOf(context.getColor(R.color.card_stroke)));
+        card.setStrokeWidth(context.getResources().getDimensionPixelSize(R.dimen.card_stroke_width));
+    }
+
+    public static void outline(MaterialCardView card, int colorRes) {
+        Context context = card.getContext();
+        float density = context.getResources().getDisplayMetrics().density;
+        card.setStrokeColor(ColorStateList.valueOf(context.getColor(colorRes)));
+        card.setStrokeWidth(Math.round(HIGHLIGHT_DP * density));
     }
 }

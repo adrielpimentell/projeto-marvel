@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ranking_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_xs"
+    android:layout_marginBottom="@dimen/space_xs"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/touch_target"
+        android:orientation="horizontal"
+        android:padding="@dimen/card_padding_compact">
+
+        <TextView
+            android:id="@+id/ranking_position"
+            android:layout_width="@dimen/ranking_position_size"
+            android:layout_height="@dimen/ranking_position_size"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="@color/surface_high"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Marvel.Headline"
+            android:textColor="@color/text_primary"
+            tools:text="12" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/card_padding_compact"
+            android:layout_marginEnd="@dimen/space_sm"
+            android:layout_weight="1"
+            android:importantForAccessibility="no"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ranking_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.Marvel.Title"
+                tools:text="tony_99" />
+
+            <TextView
+                android:id="@+id/ranking_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/space_xs"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                app:drawableStartCompat="@drawable/ic_medal"
+                app:drawableTint="@color/text_secondary"
+                tools:text="Vingador" />
+
+            <TextView
+                android:id="@+id/ranking_prize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:drawablePadding="@dimen/space_xs"
+                android:gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.Marvel.Caption"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_chest"
+                tools:text="Prêmio: baú Lendário + 500 moedas"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ranking_trophies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/space_xs"
+            android:gravity="center_vertical"
+            android:importantForAccessibility="no"
+            android:textAppearance="@style/TextAppearance.Marvel.TitleLarge"
+            app:drawableStartCompat="@drawable/ic_trophy"
+            app:drawableTint="@color/red"
+            tools:text="1.250" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
