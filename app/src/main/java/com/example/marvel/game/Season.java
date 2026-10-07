@@ -1,7 +1,9 @@
 package com.example.marvel.game;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
@@ -13,11 +15,17 @@ public final class Season {
 
     public static final ZoneId ZONE = ZoneId.of("America/Sao_Paulo");
 
+    private static int debugOffsetWeeks;
+
     private Season() {
     }
 
     public static Instant now() {
-        return Instant.now();
+        return Instant.now().plus(Duration.ofDays(7L * debugOffsetWeeks));
+    }
+
+    public static void debugAdvanceWeek() {
+        debugOffsetWeeks++;
     }
 
     public static String currentId() {
@@ -48,5 +56,19 @@ public final class Season {
 
     public static String previousId(Instant instant) {
         return idAt(startOf(instant).minusSeconds(1));
+    }
+
+    public static Instant startOfId(String id) {
+        int year = Integer.parseInt(id.substring(0, 4));
+        int week = Integer.parseInt(id.substring(6));
+        return LocalDate.of(year, 1, 4)
+                .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week)
+                .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
+                .atStartOfDay(ZONE)
+                .toInstant();
+    }
+
+    public static boolean isBefore(String season, String other) {
+        return season.compareTo(other) < 0;
     }
 }

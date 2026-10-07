@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.marvel.ui.season.SeasonEndActivity;
 import com.example.marvel.game.Season;
 import com.example.marvel.data.season.SeasonRepository;
 import com.example.marvel.data.auth.Session;
@@ -108,9 +109,23 @@ public class MainActivity extends AppCompatActivity
         playerStore.ensureSeason(Season.currentId());
         updatePlayerHud();
         dailyHeader.onResume();
-        SeasonRepository.getInstance(this).refresh(() -> {
+        SeasonRepository seasons = SeasonRepository.getInstance(this);
+        seasons.refresh(() -> {
             if (!isFinishing() && !isDestroyed()) updatePlayerHud();
         });
+        seasons.checkSeasonEnd(new SeasonRepository.Callback<Boolean>() {
+            @Override
+            public void onSuccess(Boolean granted) {
+                if (isFinishing() || isDestroyed()) return;
+                updatePlayerHud();
+                if (granted) SeasonEndActivity.showIfPending(MainActivity.this);
+            }
+
+            @Override
+            public void onError(int messageRes) {
+            }
+        });
+        SeasonEndActivity.showIfPending(this);
     }
 
     @Override

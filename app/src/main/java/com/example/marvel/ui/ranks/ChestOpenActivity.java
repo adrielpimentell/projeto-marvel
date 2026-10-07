@@ -34,6 +34,7 @@ public class ChestOpenActivity extends AppCompatActivity {
     private static final String EXTRA_RANK = "extra_rank";
     private static final String EXTRA_DAILY = "extra_daily";
     private static final String EXTRA_SURVIVAL = "extra_survival";
+    private static final String EXTRA_SEASON = "extra_season";
     private static final String STATE_REWARD = "state_reward";
 
     private ChestReward reward;
@@ -53,6 +54,10 @@ public class ChestOpenActivity extends AppCompatActivity {
         return new Intent(context, ChestOpenActivity.class).putExtra(EXTRA_SURVIVAL, true);
     }
 
+    public static Intent newSeasonIntent(Context context) {
+        return new Intent(context, ChestOpenActivity.class).putExtra(EXTRA_SEASON, true);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,7 @@ public class ChestOpenActivity extends AppCompatActivity {
             PlayerStore store = PlayerStore.getInstance(this);
             if (isDaily()) reward = store.openDailyChest();
             else if (isSurvival()) reward = store.openSurvivalChest();
+            else if (isSeason()) reward = store.openSeasonChest();
             else reward = store.openChest(getIntent().getIntExtra(EXTRA_RANK, -1));
         }
         if (reward == null) {
@@ -144,6 +150,7 @@ public class ChestOpenActivity extends AppCompatActivity {
         String title;
         if (isDaily()) title = getString(R.string.chest_daily_title);
         else if (isSurvival()) title = getString(R.string.chest_survival_title);
+        else if (isSeason()) title = getString(R.string.chest_season_title);
         else title = getString(R.string.chest_title, PlayerHud.rankName(this, reward.getRank()));
         ((TextView) findViewById(R.id.chest_title)).setText(title);
         RewardCard.bind((MaterialCardView) views.cardFront, reward.getRarity(), reward.getArtifact(),
@@ -185,6 +192,10 @@ public class ChestOpenActivity extends AppCompatActivity {
 
     private boolean isSurvival() {
         return getIntent().getBooleanExtra(EXTRA_SURVIVAL, false);
+    }
+
+    private boolean isSeason() {
+        return getIntent().getBooleanExtra(EXTRA_SEASON, false);
     }
 
     private ChestAnimator newAnimator() {

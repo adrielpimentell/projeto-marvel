@@ -27,6 +27,11 @@
             android:text="@string/debug_add_trophies" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/debug_end_season"
+            style="@style/Widget.Marvel.DebugButton"
+            android:text="@string/debug_end_season" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/debug_add_coins"
             style="@style/Widget.Marvel.DebugButton"
             android:text="@string/debug_add_coins" />

@@ -148,6 +148,19 @@ public class PlayerStore {
         return saved ? sync[0] : TrophySync.NONE;
     }
 
+    public boolean grantSeasonPrize(SeasonResult result) {
+        return change(s -> s.grantSeasonPrize(result));
+    }
+
+    public ChestReward openSeasonChest() {
+        ChestReward[] reward = new ChestReward[1];
+        boolean saved = change(s -> {
+            reward[0] = s.openSeasonChest(new Random());
+            return reward[0] != null;
+        });
+        return saved ? reward[0] : null;
+    }
+
     public boolean adoptServerTrophies(String season, Integer trophies) {
         return change(s -> s.adoptServerTrophies(season, trophies));
     }

@@ -29,6 +29,9 @@ public class PlayerState {
     private String season;
     private boolean seasonPlayed;
     private Integer seasonSynced;
+    private List<String> seasonPrizesGranted = new ArrayList<>();
+    private List<String> seasonChestRarities = new ArrayList<>();
+    private SeasonResult seasonResult;
 
     private List<Integer> openedChests = new ArrayList<>();
     private List<String> artifacts = new ArrayList<>();
@@ -60,6 +63,10 @@ public class PlayerState {
         losses = Math.max(0, losses);
         bestRank = Ranks.clamp(Math.max(bestRank, getRank()));
         if (openedChests == null) openedChests = new ArrayList<>();
+        if (seasonPrizesGranted == null) seasonPrizesGranted = new ArrayList<>();
+        if (seasonChestRarities == null) seasonChestRarities = new ArrayList<>();
+        seasonChestRarities.removeIf(rarity -> !isRarityName(rarity));
+        if (seasonChestRarities.isEmpty()) seasonResult = null;
         openedChests = withoutNullsOrRepeats(openedChests);
         if (artifacts == null) artifacts = new ArrayList<>();
         artifacts = withoutNullsOrRepeats(artifacts);
@@ -243,6 +250,38 @@ public class PlayerState {
         seasonPlayed = false;
         seasonSynced = null;
         return true;
+    }
+
+    public SeasonResult getSeasonResult() {
+        return seasonResult;
+    }
+
+    public boolean hasSeasonChest() {
+        return !seasonChestRarities.isEmpty();
+    }
+
+    boolean grantSeasonPrize(SeasonResult result) {
+        if (seasonPrizesGranted.contains(result.getSeason())) return false;
+        seasonPrizesGranted.add(result.getSeason());
+        addCoins(result.getCoins());
+        seasonChestRarities.add(result.getRarity().name());
+        seasonResult = result;
+        return true;
+    }
+
+    ChestReward openSeasonChest(Random random) {
+        if (seasonChestRarities.isEmpty()) return null;
+        Artifact.Rarity rarity = Artifact.Rarity.valueOf(seasonChestRarities.remove(0));
+        if (seasonChestRarities.isEmpty()) seasonResult = null;
+        return grant(Chests.ofRarity(0, rarity, artifacts, random));
+    }
+
+    private static boolean isRarityName(String name) {
+        if (name == null) return false;
+        for (Artifact.Rarity rarity : Artifact.Rarity.values()) {
+            if (rarity.name().equals(name)) return true;
+        }
+        return false;
     }
 
     void addDebugTrophies(int amount) {

@@ -44,6 +44,12 @@
             tools:ignore="LockedOrientationActivity,DiscouragedApi"
             android:exported="false" />
         <activity
+            android:name=".ui.season.SeasonEndActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity,DiscouragedApi"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity,DiscouragedApi"

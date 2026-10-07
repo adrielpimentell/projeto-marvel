@@ -488,4 +488,16 @@
     <string name="ranking_me_loading">Calculando sua posição…</string>
     <string name="ranking_no_position">—</string>
     <string name="ranking_row_description">%1$sº lugar: %2$s, patente %3$s, %4$s troféus</string>
+    <string name="chest_season_title">Baú da temporada</string>
+    <string name="season_end_title">Fim da temporada</string>
+    <string name="season_end_week">Semana de %1$s a %2$s</string>
+    <string name="season_end_position">%1$sº lugar</string>
+    <string name="season_end_trophies">%1$s troféus no fim da semana</string>
+    <string name="season_end_prize_label">Seu prêmio</string>
+    <string name="season_end_chest">Baú %1$s</string>
+    <string name="season_end_coins">+%1$s moedas</string>
+    <string name="season_end_chest_hint">Garante um artefato dessa raridade</string>
+    <string name="season_end_open">Abrir baú</string>
+    <string name="debug_end_season">Simular fim da temporada</string>
+    <string name="debug_end_season_none">Temporada encerrada sem prêmio: sem batalhas ou prêmio já recebido.</string>
 </resources>

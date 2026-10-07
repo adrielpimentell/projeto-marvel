@@ -35,4 +35,6 @@
     <dimen name="pull_refresh_threshold">72dp</dimen>
     <dimen name="ranking_position_size">40dp</dimen>
     <dimen name="back_button_inset">-12dp</dimen>
+    <dimen name="season_end_medal_size">96dp</dimen>
+    <dimen name="season_end_chest_size">56dp</dimen>
 </resources>

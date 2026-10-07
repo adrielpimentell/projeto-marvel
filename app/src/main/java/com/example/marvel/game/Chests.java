@@ -18,7 +18,11 @@ public final class Chests {
     }
 
     static ChestReward roll(int rank, Collection<String> ownedArtifactIds, Random random) {
-        Artifact.Rarity rarity = rollRarity(rank, random);
+        return ofRarity(rank, rollRarity(rank, random), ownedArtifactIds, random);
+    }
+
+    static ChestReward ofRarity(int rank, Artifact.Rarity rarity, Collection<String> ownedArtifactIds,
+                                Random random) {
         Artifact prize = ArtifactDrops.pick(rarity, ownedArtifactIds, random);
         if (prize == null) {
             return new ChestReward(rank, rarity, null, ArtifactDrops.duplicateCoins(rarity));

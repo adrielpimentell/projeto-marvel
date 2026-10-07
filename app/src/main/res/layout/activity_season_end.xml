@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/season_end_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.season.SeasonEndActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_margin"
+        android:paddingTop="@dimen/space_xl"
+        android:paddingEnd="@dimen/screen_margin"
+        android:paddingBottom="@dimen/space_lg">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:accessibilityHeading="true"
+            android:gravity="center"
+            android:text="@string/season_end_title"
+            android:textAppearance="@style/TextAppearance.Marvel.DisplayLarge"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:id="@+id/season_end_week"
+            style="@style/Widget.Marvel.ScreenSubtitle"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            tools:text="Semana de 05/10 a 11/10" />
+
+        <ImageView
+            android:id="@+id/season_end_medal"
+            android:layout_width="@dimen/season_end_medal_size"
+            android:layout_height="@dimen/season_end_medal_size"
+            android:layout_marginTop="@dimen/space_xl"
+            android:background="@drawable/bg_icon_circle"
+            android:importantForAccessibility="no"
+            android:padding="@dimen/space_md"
+            android:src="@drawable/ic_leaderboard"
+            app:tint="@color/seal_gold" />
+
+        <TextView
+            android:id="@+id/season_end_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_md"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.DisplayLarge"
+            android:textColor="@color/text_primary"
+            tools:text="3º lugar" />
+
+        <TextView
+            android:id="@+id/season_end_trophies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/space_xs"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.BodyLarge"
+            android:textColor="@color/text_label"
+            tools:text="1.250 troféus no fim da semana" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/season_end_prize_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xl">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding">
+
+                <ImageView
+                    android:id="@+id/season_end_chest"
+                    android:layout_width="@dimen/season_end_chest_size"
+                    android:layout_height="@dimen/season_end_chest_size"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_chest"
+                    app:tint="@color/rarity_legendary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/season_end_prize_label"
+                        android:textAppearance="@style/TextAppearance.Marvel.Label" />
+
+                    <TextView
+                        android:id="@+id/season_end_chest_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Marvel.TitleLarge"
+                        tools:text="Baú Lendário" />
+
+                    <TextView
+                        android:id="@+id/season_end_coins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/space_xs"
+                        android:gravity="center_vertical"
+                        android:textAppearance="@style/TextAppearance.Marvel.Body"
+                        android:textColor="@color/text_primary"
+                        app:drawableStartCompat="@drawable/ic_coin"
+                        app:drawableTint="@color/rarity_legendary"
+                        tools:text="+500 moedas" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/season_end_chest_hint"
+                        android:textAppearance="@style/TextAppearance.Marvel.Caption" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/season_end_open"
+            style="@style/Widget.Marvel.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            android:text="@string/season_end_open"
+            app:icon="@drawable/ic_chest"
+            app:iconGravity="textStart" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
