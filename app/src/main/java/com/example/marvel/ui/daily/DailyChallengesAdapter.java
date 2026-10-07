@@ -15,7 +15,6 @@ import com.example.marvel.game.DailyChallenge;
 import com.example.marvel.game.DailyChallenges;
 import com.example.marvel.game.PlayerState;
 import com.example.marvel.game.SurvivalRun;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.common.PlayerHud;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 
@@ -25,8 +24,6 @@ public class DailyChallengesAdapter extends RecyclerView.Adapter<DailyChallenges
 
     public interface Listener {
         void onOpenDailyChest();
-
-        void onDebugNextDay();
 
         void onOpenSurvival();
     }
@@ -99,7 +96,6 @@ public class DailyChallengesAdapter extends RecyclerView.Adapter<DailyChallenges
         private final ImageView chestIcon;
         private final TextView chestText;
         private final View chestButton;
-        private final View debugNextDay;
         private final TextView survivalStatus;
         private final TextView survivalAction;
 
@@ -113,13 +109,10 @@ public class DailyChallengesAdapter extends RecyclerView.Adapter<DailyChallenges
             chestIcon = itemView.findViewById(R.id.daily_chest_icon);
             chestText = itemView.findViewById(R.id.daily_chest_text);
             chestButton = itemView.findViewById(R.id.daily_chest_open);
-            debugNextDay = itemView.findViewById(R.id.daily_debug_next_day);
             survivalStatus = itemView.findViewById(R.id.home_survival_status);
             survivalAction = itemView.findViewById(R.id.home_survival_action);
             itemView.findViewById(R.id.home_survival).setOnClickListener(v -> listener.onOpenSurvival());
             chestButton.setOnClickListener(v -> listener.onOpenDailyChest());
-            debugNextDay.setOnClickListener(v -> listener.onDebugNextDay());
-            debugNextDay.setVisibility(DebugTools.ENABLED ? View.VISIBLE : View.GONE);
         }
 
         void bind() {

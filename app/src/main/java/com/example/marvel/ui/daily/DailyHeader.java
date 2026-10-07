@@ -3,20 +3,15 @@ package com.example.marvel.ui.daily;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 
 import com.example.marvel.R;
 import com.example.marvel.game.DailyChallenges;
 import com.example.marvel.game.DailyClock;
 import com.example.marvel.game.PlayerStore;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.ranks.ChestOpenActivity;
 import com.example.marvel.ui.survival.SurvivalActivity;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public final class DailyHeader implements DailyChallengesAdapter.Listener {
 
@@ -24,8 +19,6 @@ public final class DailyHeader implements DailyChallengesAdapter.Listener {
 
     private final Activity activity;
     private final PlayerStore playerStore;
-    private final View snackbarRoot;
-    private final View snackbarAnchor;
     private final DailyChallengesAdapter adapter = new DailyChallengesAdapter(this);
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable tick = new Runnable() {
@@ -41,11 +34,9 @@ public final class DailyHeader implements DailyChallengesAdapter.Listener {
         }
     };
 
-    public DailyHeader(Activity activity, PlayerStore playerStore, View snackbarRoot, View snackbarAnchor) {
+    public DailyHeader(Activity activity, PlayerStore playerStore) {
         this.activity = activity;
         this.playerStore = playerStore;
-        this.snackbarRoot = snackbarRoot;
-        this.snackbarAnchor = snackbarAnchor;
     }
 
     public DailyChallengesAdapter getAdapter() {
@@ -88,16 +79,5 @@ public final class DailyHeader implements DailyChallengesAdapter.Listener {
     @Override
     public void onOpenSurvival() {
         activity.startActivity(SurvivalActivity.newIntent(activity));
-    }
-
-    @Override
-    public void onDebugNextDay() {
-        if (!DebugTools.ENABLED) return;
-        DailyClock.debugOffsetDays++;
-        refresh();
-        String date = LocalDate.now().plusDays(DailyClock.debugOffsetDays)
-                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        Snackbar.make(snackbarRoot, activity.getString(R.string.daily_debug_day_changed, date),
-                Snackbar.LENGTH_SHORT).setAnchorView(snackbarAnchor).show();
     }
 }

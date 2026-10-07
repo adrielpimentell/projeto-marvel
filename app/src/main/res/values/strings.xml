@@ -165,8 +165,6 @@
     <string name="chest_continue">Continuar</string>
     <string name="chest_collect">Coletar</string>
     <string name="chest_legendary_banner">Lendário!</string>
-    <string name="debug_replay">Rever animação</string>
-    <string name="debug_slow_motion">Câmera lenta</string>
     <string name="chest_coins_name">%1$s moedas</string>
     <string name="chest_coins_effect">Você já tem todos os artefatos dessa raridade, então o baú virou moedas.</string>
 
@@ -239,10 +237,6 @@
         <item>O nível máximo</item>
     </string-array>
 
-    <string name="debug_label">Depuração</string>
-    <string name="debug_add_trophies">+100 troféus</string>
-    <string name="debug_add_coins">+1000 moedas</string>
-    <string name="debug_add_coins_big">+50.000 moedas</string>
 
     <string name="origin_mutant">Mutante</string>
     <string name="origin_cyborg">Ciborgue</string>
@@ -358,8 +352,6 @@
     </plurals>
     <string name="daily_chest_done">Baú de hoje já ganho. Volte amanhã!</string>
     <string name="daily_chest_open">Abrir baú</string>
-    <string name="daily_debug_next_day">Trocar dia</string>
-    <string name="daily_debug_day_changed">Dia de teste: %1$s</string>
     <string name="battle_daily_done">Desafio do dia concluído: %1$s · +%2$s moedas</string>
     <string name="chest_daily_title">Baú do dia</string>
     <string name="detail_counts_for_daily">Vale para o desafio: %1$s</string>
@@ -387,7 +379,6 @@
     <string name="survival_give_up_title">Desistir da partida?</string>
     <string name="survival_give_up_message">Você fica com as moedas dos andares vencidos, mas os bônus somem.</string>
     <string name="survival_open_chest">Abrir baú da Sobrevivência</string>
-    <string name="survival_debug_skip">Pular andar</string>
     <string name="survival_enemy_error">Não deu para sortear o inimigo. %1$s</string>
     <string name="survival_buff_fury">Fúria</string>
     <string name="survival_buff_fury_desc">+%1$d%% de dano (acumula)</string>
@@ -495,8 +486,6 @@
     <string name="season_end_coins">+%1$s moedas</string>
     <string name="season_end_chest_hint">Garante um artefato dessa raridade</string>
     <string name="season_end_open">Abrir baú</string>
-    <string name="debug_end_season">Simular fim da temporada</string>
-    <string name="debug_end_season_none">Temporada encerrada sem prêmio: sem batalhas ou prêmio já recebido.</string>
     <string name="ranking_chest">Baú %1$s</string>
     <string name="ranking_prize_short">%1$s + %2$s</string>
     <string name="ranking_empty_message">Vença batalhas para subir no ranking</string>

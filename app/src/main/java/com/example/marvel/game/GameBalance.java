@@ -62,7 +62,6 @@ public final class GameBalance {
     public static final long CHEST_ANIM_SUSPENSE_LEGENDARY_MS = 1_300;
     public static final int CHEST_PARTICLES_LEGENDARY = 20;
     public static final int CHEST_SCREEN_SHAKE_DP = 10;
-    public static final int CHEST_SLOW_MOTION_FACTOR = 5;
 
     public static final int BONUS_COMMON_PERCENT = 5;
     public static final int BONUS_RARE_PERCENT = 10;

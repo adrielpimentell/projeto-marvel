@@ -371,34 +371,14 @@
                         tools:text="Lutar no andar 5" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/survival_give_up"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_padding_compact"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/survival_give_up"
-                        style="@style/Widget.Material3.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/survival_give_up"
-                        android:textColor="@color/text_muted" />
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/survival_debug_skip"
-                        style="@style/Widget.Marvel.DebugButton"
-                        android:layout_marginEnd="0dp"
-                        android:text="@string/survival_debug_skip"
-                        android:visibility="gone"
-                        tools:visibility="visible" />
-                </LinearLayout>
+                    android:text="@string/survival_give_up"
+                    android:textColor="@color/text_muted" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

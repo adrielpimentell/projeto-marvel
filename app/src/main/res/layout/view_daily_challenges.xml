@@ -96,14 +96,6 @@
                     android:visibility="gone"
                     tools:visibility="visible" />
             </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/daily_debug_next_day"
-                style="@style/Widget.Marvel.DebugButton"
-                android:layout_marginTop="@dimen/space_sm"
-                android:text="@string/daily_debug_next_day"
-                android:visibility="gone"
-                tools:visibility="visible" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

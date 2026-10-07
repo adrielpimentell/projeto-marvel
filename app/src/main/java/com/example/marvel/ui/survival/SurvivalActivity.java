@@ -28,7 +28,6 @@ import com.example.marvel.game.Survival;
 import com.example.marvel.game.SurvivalBuff;
 import com.example.marvel.game.SurvivalRun;
 import com.example.marvel.ui.battle.BattleActivity;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.common.PlayerHud;
 import com.example.marvel.ui.ranks.ChestOpenActivity;
 import com.google.android.material.button.MaterialButton;
@@ -72,7 +71,6 @@ public class SurvivalActivity extends AppCompatActivity {
     private TextView enemyName;
     private TextView enemyInfo;
     private MaterialButton fightButton;
-    private View debugSkip;
 
     private Character enemy;
     private RequestHandle request;
@@ -136,7 +134,6 @@ public class SurvivalActivity extends AppCompatActivity {
         enemyName = findViewById(R.id.survival_enemy_name);
         enemyInfo = findViewById(R.id.survival_enemy_info);
         fightButton = findViewById(R.id.survival_fight);
-        debugSkip = findViewById(R.id.survival_debug_skip);
 
         ((TextView) findViewById(R.id.survival_rules)).setText(
                 getString(R.string.survival_rules, GameBalance.SURVIVAL_HEAL_PERCENT));
@@ -146,9 +143,6 @@ public class SurvivalActivity extends AppCompatActivity {
         findViewById(R.id.survival_enemy_retry).setOnClickListener(v -> prepareEnemy());
         chestButton.setOnClickListener(v -> startActivity(ChestOpenActivity.newSurvivalIntent(this)));
         fightButton.setOnClickListener(v -> fight());
-        debugSkip.setOnClickListener(v -> {
-            if (DebugTools.ENABLED && playerStore.skipSurvivalFloor()) forgetEnemyAndRefresh();
-        });
         for (int i = 0; i < buffCards.length; i++) {
             final int index = i;
             buffCards[i].setOnClickListener(v -> {
@@ -204,7 +198,6 @@ public class SurvivalActivity extends AppCompatActivity {
         hpText.setText(getString(R.string.survival_hp, hp, max));
         buffsText.setText(SurvivalUi.buffList(this, run));
         runCoinsText.setText(getString(R.string.survival_run_coins, PlayerHud.format(run.getCoinsEarned())));
-        debugSkip.setVisibility(DebugTools.ENABLED && !run.hasChoicePending() ? View.VISIBLE : View.GONE);
 
         if (run.hasChoicePending()) {
             choicePanel.setVisibility(View.VISIBLE);

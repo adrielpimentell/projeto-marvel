@@ -1,7 +1,6 @@
 package com.example.marvel.game;
 
 import java.time.DayOfWeek;
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -15,17 +14,11 @@ public final class Season {
 
     public static final ZoneId ZONE = ZoneId.of("America/Sao_Paulo");
 
-    private static int debugOffsetWeeks;
-
     private Season() {
     }
 
     public static Instant now() {
-        return Instant.now().plus(Duration.ofDays(7L * debugOffsetWeeks));
-    }
-
-    public static void debugAdvanceWeek() {
-        debugOffsetWeeks++;
+        return Instant.now();
     }
 
     public static String currentId() {

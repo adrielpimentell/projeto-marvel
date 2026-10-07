@@ -20,14 +20,11 @@ import com.example.marvel.ui.common.Screens;
 import com.example.marvel.R;
 import com.example.marvel.game.Artifact;
 import com.example.marvel.game.ChestReward;
-import com.example.marvel.game.GameBalance;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.ui.common.ArtifactUi;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.common.PlayerHud;
 import com.example.marvel.ui.common.RewardCard;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class ChestOpenActivity extends AppCompatActivity {
 
@@ -92,7 +89,6 @@ public class ChestOpenActivity extends AppCompatActivity {
         rarityColor = ArtifactUi.rarityColor(this, reward.getRarity());
         bindViews();
         bindReward();
-        setupDebug();
 
         root.setOnClickListener(v -> animator.skip());
         findViewById(R.id.chest_done).setOnClickListener(v -> finish());
@@ -168,24 +164,6 @@ public class ChestOpenActivity extends AppCompatActivity {
                 ? getColor(R.color.rarity_legendary) : rarityColor);
     }
 
-    private void setupDebug() {
-        View debug = findViewById(R.id.chest_debug);
-        if (!DebugTools.ENABLED) {
-            debug.setVisibility(View.GONE);
-            return;
-        }
-        debug.setVisibility(View.VISIBLE);
-        MaterialSwitch slow = findViewById(R.id.debug_slow_motion);
-        slow.setChecked(DebugTools.chestSlowMotion);
-        slow.setOnCheckedChangeListener((button, checked) -> DebugTools.chestSlowMotion = checked);
-        findViewById(R.id.debug_replay).setOnClickListener(v -> {
-            animator.cancel();
-            animator = newAnimator();
-            ((TextView) findViewById(R.id.chest_hint)).setText(R.string.chest_skip_hint);
-            animator.play(this::onAnimationFinished);
-        });
-    }
-
     private boolean isDaily() {
         return getIntent().getBooleanExtra(EXTRA_DAILY, false);
     }
@@ -199,9 +177,7 @@ public class ChestOpenActivity extends AppCompatActivity {
     }
 
     private ChestAnimator newAnimator() {
-        float timeScale = DebugTools.ENABLED && DebugTools.chestSlowMotion
-                ? GameBalance.CHEST_SLOW_MOTION_FACTOR : 1f;
-        return new ChestAnimator(views, reward.getRarity(), rarityColor, timeScale);
+        return new ChestAnimator(views, reward.getRarity(), rarityColor);
     }
 
     private void onAnimationFinished() {

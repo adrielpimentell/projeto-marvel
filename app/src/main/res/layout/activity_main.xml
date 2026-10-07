@@ -25,13 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <include
-            android:id="@+id/debug_bar"
-            layout="@layout/view_debug_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm" />
-
         <TextView
             android:id="@+id/list_title_text"
             style="@style/Widget.Marvel.ScreenTitle"

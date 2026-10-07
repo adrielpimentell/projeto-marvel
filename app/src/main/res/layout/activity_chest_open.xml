@@ -151,33 +151,6 @@
             android:visibility="invisible"
             tools:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/chest_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:layout_marginTop="@dimen/space_sm"
-            android:layout_marginEnd="@dimen/space_sm"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
-
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/debug_slow_motion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_sm"
-                android:text="@string/debug_slow_motion"
-                android:textAppearance="@style/TextAppearance.Marvel.Caption"
-                android:textColor="@color/text_muted" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/debug_replay"
-                style="@style/Widget.Marvel.DebugButton"
-                android:text="@string/debug_replay" />
-        </LinearLayout>
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/chest_done"
             style="@style/Widget.Marvel.Button"

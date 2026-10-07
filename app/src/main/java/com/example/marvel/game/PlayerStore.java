@@ -124,10 +124,6 @@ public class PlayerStore {
         return change(s -> s.chooseSurvivalBuff(index));
     }
 
-    public boolean skipSurvivalFloor() {
-        return change(PlayerState::skipSurvivalFloor);
-    }
-
     public boolean endSurvival() {
         return change(PlayerState::endSurvival);
     }
@@ -139,13 +135,6 @@ public class PlayerStore {
             return reward[0] != null;
         });
         return saved ? reward[0] : null;
-    }
-
-    public boolean addDebugTrophies(int amount) {
-        return change(s -> {
-            s.addDebugTrophies(amount);
-            return true;
-        });
     }
 
     public boolean ensureSeason(String currentSeason) {

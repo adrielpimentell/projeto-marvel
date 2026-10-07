@@ -152,14 +152,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <include
-            android:id="@+id/debug_bar"
-            layout="@layout/view_debug_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_sm"
-            android:layout_weight="1" />
-
         <Space
             android:id="@+id/trail_footer_space"
             android:layout_width="0dp"

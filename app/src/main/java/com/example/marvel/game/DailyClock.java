@@ -7,13 +7,11 @@ import java.time.ZoneId;
 
 public final class DailyClock {
 
-    public static int debugOffsetDays;
-
     private DailyClock() {
     }
 
     public static int today() {
-        return toKey(LocalDate.now(ZoneId.systemDefault()).plusDays(debugOffsetDays));
+        return toKey(LocalDate.now(ZoneId.systemDefault()));
     }
 
     public static Duration untilNextDay() {

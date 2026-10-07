@@ -21,7 +21,6 @@ import com.example.marvel.game.AttributeCalculator;
 import com.example.marvel.game.GameBalance;
 import com.example.marvel.game.OwnedHero;
 import com.example.marvel.game.PlayerStore;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.common.Families;
 import com.example.marvel.ui.common.FamilyFilter;
 import com.example.marvel.ui.common.MainNav;
@@ -110,7 +109,6 @@ public class MarketActivity extends AppCompatActivity
         });
 
         MainNav.setup(this, bottomNav, R.id.nav_market, () -> list.smoothScrollToPosition(0));
-        DebugTools.setup(findViewById(R.id.debug_bar), playerStore, this::refreshCoins);
 
         roulettes = new RoulettePanel(this, findViewById(R.id.roulette_list), playerStore, this);
         ChipGroup tabs = findViewById(R.id.market_tabs);

@@ -27,7 +27,6 @@ import com.example.marvel.data.repository.RequestHandle;
 import com.example.marvel.data.repository.SortOption;
 import com.example.marvel.game.OwnedHero;
 import com.example.marvel.game.PlayerStore;
-import com.example.marvel.ui.common.DebugTools;
 import com.example.marvel.ui.common.MainNav;
 import com.example.marvel.ui.common.PlayerHud;
 import com.example.marvel.ui.common.SearchBar;
@@ -95,7 +94,6 @@ public class MainActivity extends AppCompatActivity
         bindViews();
         applyWindowInsets();
         loadHeroDetailsIfNeeded();
-        DebugTools.setup(findViewById(R.id.debug_bar), playerStore, this::updatePlayerHud);
         setupList();
         setupSearch();
         setupFilters();
@@ -163,7 +161,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setupList() {
         adapter = new CharacterAdapter(this);
-        dailyHeader = new DailyHeader(this, playerStore, root, bottomNav);
+        dailyHeader = new DailyHeader(this, playerStore);
         dailyAdapter = dailyHeader.getAdapter();
         listAdapter = new ConcatAdapter(dailyAdapter, adapter);
         layoutManager = new GridLayoutManager(this, GRID_COLUMNS);

@@ -1,7 +1,6 @@
 package com.example.marvel.data.season;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.marvel.R;
 import com.example.marvel.data.auth.AuthRepository;
@@ -39,8 +38,6 @@ public final class SeasonRepository {
 
         void onError(int messageRes);
     }
-
-    private static final String TAG = "SeasonRepository";
 
     public static final String SEASONS = "temporadas";
     public static final String PLAYERS = "jogadores";
@@ -94,7 +91,6 @@ public final class SeasonRepository {
                     callback.onSuccess(new RankingPage(entries, snapshot.getMetadata().isFromCache()));
                 })
                 .addOnFailureListener(e -> {
-                    Log.w(TAG, "ranking", e);
                     callback.onError(messageFor(e));
                 });
     }
@@ -129,12 +125,10 @@ public final class SeasonRepository {
                                         trophies.intValue(), (int) ahead + 1));
                             })
                             .addOnFailureListener(e -> {
-                                Log.w(TAG, "position", e);
                                 callback.onError(messageFor(e));
                             });
                 })
                 .addOnFailureListener(e -> {
-                    Log.w(TAG, "my doc", e);
                     callback.onError(messageFor(e));
                 });
     }
@@ -230,7 +224,6 @@ public final class SeasonRepository {
 
     private void failSeasonCheck(Callback<Boolean> callback, Exception e) {
         checkingSeasonEnd = false;
-        Log.w(TAG, "season end", e);
         if (callback != null) callback.onError(messageFor(e));
         runWaitingSeasonCheck();
     }

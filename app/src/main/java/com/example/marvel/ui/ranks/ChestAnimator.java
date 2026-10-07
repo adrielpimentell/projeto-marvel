@@ -56,7 +56,6 @@ final class ChestAnimator {
     private final boolean legendary;
     private final int rarityColor;
     private final int particleCount;
-    private final float timeScale;
     private final float density;
     private final List<Animator> idle = new ArrayList<>();
 
@@ -64,13 +63,12 @@ final class ChestAnimator {
     private Listener listener;
     private boolean finished;
 
-    ChestAnimator(Views views, Artifact.Rarity rarity, int rarityColor, float timeScale) {
+    ChestAnimator(Views views, Artifact.Rarity rarity, int rarityColor) {
         this.v = views;
         this.rarity = rarity;
         this.legendary = ChestAnimSpec.isLegendary(rarity);
         this.rarityColor = rarityColor;
         this.particleCount = ChestAnimSpec.particles(rarity);
-        this.timeScale = timeScale;
         this.density = views.root.getResources().getDisplayMetrics().density;
     }
 
@@ -168,7 +166,7 @@ final class ChestAnimator {
     }
 
     private Animator entry() {
-        long d = ms(GameBalance.CHEST_ANIM_ENTRY_MS);
+        long d = GameBalance.CHEST_ANIM_ENTRY_MS;
         ObjectAnimator dim = ObjectAnimator.ofFloat(v.dim, View.ALPHA, 0f, DIM_ALPHA);
         dim.setInterpolator(new DecelerateInterpolator());
         ObjectAnimator rise = ObjectAnimator.ofFloat(v.chestGroup, View.TRANSLATION_Y, 420 * density, 0f);
@@ -180,7 +178,7 @@ final class ChestAnimator {
     }
 
     private Animator suspense() {
-        long d = ms(ChestAnimSpec.suspenseMs(rarity));
+        long d = ChestAnimSpec.suspenseMs(rarity);
         ObjectAnimator shake = ObjectAnimator.ofPropertyValuesHolder(v.chestGroup, frames(View.ROTATION,
                 0f, 0f, 0.08f, -3f, 0.16f, 3f, 0.25f, 0f,
                 0.33f, 0f, 0.42f, -6f, 0.51f, 6f, 0.6f, 0f,
@@ -195,7 +193,7 @@ final class ChestAnimator {
     }
 
     private Animator opening() {
-        long d = ms(GameBalance.CHEST_ANIM_OPEN_MS);
+        long d = GameBalance.CHEST_ANIM_OPEN_MS;
         ObjectAnimator lidTurn = ObjectAnimator.ofFloat(v.lid, View.ROTATION_X, 0f, LID_OPEN_DEGREES);
         lidTurn.setInterpolator(new DecelerateInterpolator(2.5f));
         ObjectAnimator lidUp = ObjectAnimator.ofFloat(v.lid, View.TRANSLATION_Y, 0f, -6 * density);
@@ -236,7 +234,7 @@ final class ChestAnimator {
     }
 
     private Animator reveal() {
-        long d = ms(GameBalance.CHEST_ANIM_REVEAL_MS);
+        long d = GameBalance.CHEST_ANIM_REVEAL_MS;
         ObjectAnimator rise = ObjectAnimator.ofPropertyValuesHolder(v.cardFlip,
                 frames(View.ALPHA, 0f, 0f, 0.15f, 1f, 1f, 1f),
                 PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 110 * density, 0f),
@@ -257,7 +255,7 @@ final class ChestAnimator {
     }
 
     private Animator details() {
-        long d = ms(GameBalance.CHEST_ANIM_DETAILS_MS);
+        long d = GameBalance.CHEST_ANIM_DETAILS_MS;
         List<Animator> parts = new ArrayList<>();
         for (int i = 0; i < v.details.length; i++) {
             ObjectAnimator show = ObjectAnimator.ofPropertyValuesHolder(v.details[i],
@@ -342,7 +340,7 @@ final class ChestAnimator {
         v.particles.getLocationInWindow(layer);
         float x = chest[0] - layer[0] + v.chestGroup.getWidth() / 2f;
         float y = chest[1] - layer[1] + v.lid.getHeight();
-        v.particles.burst(x, y, particleCount, rarityColor, ms(PARTICLES_MS));
+        v.particles.burst(x, y, particleCount, rarityColor, PARTICLES_MS);
     }
 
     private void resetToStart() {
@@ -388,10 +386,6 @@ final class ChestAnimator {
         idle.clear();
         v.particles.stop();
         v.doneButton.animate().cancel();
-    }
-
-    private long ms(long base) {
-        return (long) (base * timeScale);
     }
 
     private static void set(View view, float translationX, float translationY, float scale, float alpha) {
