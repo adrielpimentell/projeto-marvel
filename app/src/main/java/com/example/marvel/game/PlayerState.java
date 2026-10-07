@@ -66,7 +66,9 @@ public class PlayerState {
         if (seasonPrizesGranted == null) seasonPrizesGranted = new ArrayList<>();
         if (seasonChestRarities == null) seasonChestRarities = new ArrayList<>();
         seasonChestRarities.removeIf(rarity -> !isRarityName(rarity));
-        if (seasonChestRarities.isEmpty()) seasonResult = null;
+        if (seasonChestRarities.isEmpty() || (seasonResult != null && !seasonResult.isValid())) {
+            seasonResult = null;
+        }
         openedChests = withoutNullsOrRepeats(openedChests);
         if (artifacts == null) artifacts = new ArrayList<>();
         artifacts = withoutNullsOrRepeats(artifacts);
@@ -243,6 +245,7 @@ public class PlayerState {
 
     boolean ensureSeason(String currentSeason) {
         if (currentSeason.equals(season)) return false;
+        if (season != null && Season.isBefore(currentSeason, season)) return false;
         season = currentSeason;
         trophies = GameBalance.MIN_TROPHIES;
         bestRank = 0;

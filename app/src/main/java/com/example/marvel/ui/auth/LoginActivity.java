@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         if (!AuthForms.requireEmail(emailLayout, email)) return;
 
-        setBusy(true);
+        setBusy(true, false);
         auth.sendPasswordReset(email, new AuthRepository.Callback<Void>() {
             @Override
             public void onSuccess(Void value) {
@@ -129,8 +129,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setBusy(boolean busy) {
+        setBusy(busy, true);
+    }
+
+    private void setBusy(boolean busy, boolean onSubmit) {
         this.busy = busy;
-        submit.setLoading(busy);
+        submit.setLoading(busy && onSubmit);
         AuthForms.setEnabled(!busy, emailLayout, passwordLayout, forgotButton, signUpLink);
     }
 }

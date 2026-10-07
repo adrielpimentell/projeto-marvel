@@ -22,6 +22,14 @@ public final class SeasonResult {
         return result;
     }
 
+    boolean isValid() {
+        if (season == null || !season.matches("\\d{4}-W\\d{2}") || position < 1 || coins < 0) return false;
+        for (Artifact.Rarity value : Artifact.Rarity.values()) {
+            if (value.name().equals(rarity)) return true;
+        }
+        return false;
+    }
+
     public String getSeason() {
         return season;
     }

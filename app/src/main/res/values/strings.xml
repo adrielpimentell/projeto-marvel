@@ -472,6 +472,7 @@
     <string name="ranking_refresh">Atualizar ranking</string>
     <string name="ranking_prize">Prêmio: baú %1$s + %2$s moedas</string>
     <string name="ranking_you">%1$s (você)</string>
+    <string name="ranking_you_alone">Você</string>
     <string name="ranking_me_not_played">Jogue uma batalha para entrar no ranking</string>
     <string name="ranking_me_loading">Calculando sua posição…</string>
     <string name="ranking_no_position">—</string>

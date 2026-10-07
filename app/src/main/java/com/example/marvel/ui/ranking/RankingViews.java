@@ -72,7 +72,12 @@ final class RankingViews {
         positionView.setText(R.string.ranking_no_position);
         positionView.setTextColor(context.getColor(R.color.text_primary));
         bindAvatar(pill.findViewById(R.id.pill_avatar), myName == null ? "" : myName);
-        TextView name = bindName(pill.findViewById(R.id.pill_name), myName == null ? "" : myName, true);
+        TextView name = pill.findViewById(R.id.pill_name);
+        if (myName == null || myName.isEmpty()) {
+            name.setText(R.string.ranking_you_alone);
+        } else {
+            bindName(name, myName, true);
+        }
         pill.findViewById(R.id.pill_rank_icon).setVisibility(View.GONE);
         TextView message = pill.findViewById(R.id.pill_rank);
         message.setText(messageRes);

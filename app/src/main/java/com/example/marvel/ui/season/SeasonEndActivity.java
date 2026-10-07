@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.marvel.R;
+import com.example.marvel.data.auth.Session;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.game.Season;
 import com.example.marvel.game.SeasonPrize;
@@ -29,7 +30,7 @@ public class SeasonEndActivity extends AppCompatActivity {
             DateTimeFormatter.ofPattern("dd/MM", Locale.ROOT).withZone(Season.ZONE);
     private static final int[] PODIUM_COLORS = {R.color.seal_gold, R.color.seal_silver, R.color.seal_bronze};
 
-    private static boolean shownThisSession;
+    private static String shownKey;
 
     public static Intent newIntent(Context context) {
         return new Intent(context, SeasonEndActivity.class);
@@ -37,10 +38,15 @@ public class SeasonEndActivity extends AppCompatActivity {
 
     public static void showIfPending(Context context) {
         PlayerStore store = PlayerStore.getInstance(context);
-        if (shownThisSession || store.get().getSeasonResult() == null || !store.get().hasSeasonChest()) {
+        SeasonResult result = store.get().getSeasonResult();
+        if (result == null || !store.get().hasSeasonChest() || keyOf(result).equals(shownKey)) {
             return;
         }
         context.startActivity(newIntent(context));
+    }
+
+    private static String keyOf(SeasonResult result) {
+        return Session.uid() + "/" + result.getSeason();
     }
 
     @Override
@@ -52,7 +58,7 @@ public class SeasonEndActivity extends AppCompatActivity {
             finish();
             return;
         }
-        shownThisSession = true;
+        shownKey = keyOf(result);
         Screens.edgeToEdge(this);
         setContentView(R.layout.activity_season_end);
         Screens.padForSystemBars(findViewById(R.id.season_end_root));

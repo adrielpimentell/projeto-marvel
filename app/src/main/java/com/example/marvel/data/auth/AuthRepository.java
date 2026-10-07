@@ -240,12 +240,16 @@ public final class AuthRepository {
             }
             String oldKey = PlayerName.key(oldName);
             boolean keyChanges = !oldKey.equals(newKey);
+            DocumentReference oldNameRef = db.collection(USERNAMES).document(oldKey);
             DocumentSnapshot season = transaction.get(seasonRef);
+            DocumentSnapshot oldReservation = keyChanges ? transaction.get(oldNameRef) : null;
             if (keyChanges && transaction.get(newNameRef).exists()) {
                 throw new FirebaseFirestoreException(newKey, FirebaseFirestoreException.Code.ALREADY_EXISTS);
             }
             if (keyChanges) {
-                transaction.delete(db.collection(USERNAMES).document(oldKey));
+                if (oldReservation.exists() && uid.equals(oldReservation.getString(FIELD_UID))) {
+                    transaction.delete(oldNameRef);
+                }
                 transaction.set(newNameRef, Collections.singletonMap(FIELD_UID, uid));
             }
             transaction.update(userRef, FIELD_PLAYER_NAME, newName);

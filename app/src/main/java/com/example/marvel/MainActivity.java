@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.marvel.ui.auth.SignUpActivity;
+import com.example.marvel.data.auth.AuthRepository;
 import com.example.marvel.ui.season.SeasonEndActivity;
 import com.example.marvel.game.Season;
 import com.example.marvel.data.season.SeasonRepository;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity
     private TextView subtitleText;
     private StateView stateView;
     private BottomNavigationView bottomNav;
+    private boolean askedForName;
 
 
     private SortOption sort = SortOption.CLASSIC;
@@ -124,6 +127,23 @@ public class MainActivity extends AppCompatActivity
             }
         });
         SeasonEndActivity.showIfPending(this);
+        askForPlayerNameIfMissing();
+    }
+
+    private void askForPlayerNameIfMissing() {
+        if (askedForName) return;
+        AuthRepository.getInstance(this).loadPlayerName(new AuthRepository.Callback<String>() {
+            @Override
+            public void onSuccess(String name) {
+                if (name != null || askedForName || isFinishing() || isDestroyed()) return;
+                askedForName = true;
+                startActivity(SignUpActivity.newChooseNameIntent(MainActivity.this));
+            }
+
+            @Override
+            public void onError(int messageRes) {
+            }
+        });
     }
 
     @Override
