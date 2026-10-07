@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pill_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_xs"
+    android:layout_marginBottom="@dimen/space_xs"
+    android:background="@drawable/bg_ranking_pill"
+    android:focusable="true"
+    android:minHeight="@dimen/ranking_pill_min_height"
+    android:paddingStart="@dimen/space_md"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingEnd="@dimen/space_sm"
+    android:paddingBottom="@dimen/space_sm">
+
+    <TextView
+        android:id="@+id/pill_position"
+        android:layout_width="@dimen/ranking_position_width"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Marvel.Headline"
+        android:textColor="@color/text_secondary"
+        app:autoSizeMaxTextSize="@dimen/ranking_position_text_max"
+        app:autoSizeMinTextSize="@dimen/ranking_position_text_min"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="4" />
+
+    <TextView
+        android:id="@+id/pill_avatar"
+        android:layout_width="@dimen/ranking_avatar_small"
+        android:layout_height="@dimen/ranking_avatar_small"
+        android:layout_marginStart="@dimen/space_sm"
+        android:background="@drawable/bg_circle"
+        android:backgroundTint="@color/avatar_1"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:textAppearance="@style/TextAppearance.Marvel.Headline"
+        android:textColor="@color/text_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pill_position"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="T" />
+
+    <TextView
+        android:id="@+id/pill_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/card_padding_compact"
+        android:layout_marginEnd="@dimen/space_sm"
+        android:ellipsize="end"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Marvel.Title"
+        app:layout_constraintBottom_toTopOf="@id/pill_rank"
+        app:layout_constraintEnd_toStartOf="@id/pill_trophies_badge"
+        app:layout_constraintStart_toEndOf="@id/pill_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="tony_99" />
+
+    <ImageView
+        android:id="@+id/pill_rank_icon"
+        android:layout_width="@dimen/icon_sm"
+        android:layout_height="@dimen/icon_sm"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_medal"
+        app:layout_constraintBottom_toBottomOf="@id/pill_rank"
+        app:layout_constraintEnd_toStartOf="@id/pill_rank"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/pill_name"
+        app:layout_constraintTop_toTopOf="@id/pill_rank"
+        app:tint="@color/text_secondary" />
+
+    <TextView
+        android:id="@+id/pill_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_xs"
+        android:ellipsize="end"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Marvel.Caption"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/pill_prize_icon"
+        app:layout_constraintStart_toEndOf="@id/pill_rank_icon"
+        app:layout_constraintTop_toBottomOf="@id/pill_name"
+        tools:text="Sentinela" />
+
+    <ImageView
+        android:id="@+id/pill_prize_icon"
+        android:layout_width="@dimen/icon_sm"
+        android:layout_height="@dimen/icon_sm"
+        android:layout_marginStart="@dimen/space_sm"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_chest"
+        app:layout_constraintBottom_toBottomOf="@id/pill_rank"
+        app:layout_constraintEnd_toStartOf="@id/pill_prize"
+        app:layout_constraintStart_toEndOf="@id/pill_rank"
+        app:layout_constraintTop_toTopOf="@id/pill_rank"
+        app:tint="@color/text_secondary" />
+
+    <TextView
+        android:id="@+id/pill_prize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_xs"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Marvel.Caption"
+        app:layout_constraintBottom_toBottomOf="@id/pill_rank"
+        app:layout_constraintEnd_toEndOf="@id/pill_name"
+        app:layout_constraintStart_toEndOf="@id/pill_prize_icon"
+        app:layout_constraintTop_toTopOf="@id/pill_rank"
+        tools:text="Baú Comum" />
+
+    <LinearLayout
+        android:id="@+id/pill_trophies_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill_surface"
+        android:backgroundTint="@color/surface_high"
+        android:gravity="center_vertical"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/card_padding_compact"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingEnd="@dimen/card_padding_compact"
+        android:paddingBottom="@dimen/space_sm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/pill_trophies_icon"
+            android:layout_width="@dimen/icon_sm"
+            android:layout_height="@dimen/icon_sm"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_trophy"
+            app:tint="@color/red" />
+
+        <TextView
+            android:id="@+id/pill_trophies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_xs"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Marvel.Title"
+            tools:text="450" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_ranking_pill"
+    android:gravity="center"
+    android:minHeight="@dimen/ranking_pill_min_height"
+    android:paddingStart="@dimen/space_md"
+    android:paddingEnd="@dimen/space_md"
+    android:text="@string/ranking_empty_message"
+    android:textAppearance="@style/TextAppearance.Marvel.Body"
+    android:textColor="@color/text_secondary" />

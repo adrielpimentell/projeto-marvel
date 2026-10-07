@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingBottom="@dimen/space_lg">
+
+    <include
+        android:id="@+id/podium_second"
+        layout="@layout/view_podium_spot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ranking_podium_drop"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/podium_first"
+        layout="@layout/view_podium_spot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/podium_third"
+        layout="@layout/view_podium_spot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ranking_podium_drop"
+        android:layout_weight="1" />
+</LinearLayout>

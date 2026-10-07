@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,12 +26,12 @@ import com.example.marvel.ui.common.PullToRefreshLayout;
 import com.example.marvel.ui.common.Screens;
 import com.example.marvel.ui.common.Skeleton;
 import com.example.marvel.ui.common.StateView;
+import com.example.marvel.ui.common.UiTokens;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.Locale;
 
 public class RankingActivity extends AppCompatActivity {
@@ -60,7 +61,10 @@ public class RankingActivity extends AppCompatActivity {
     private StateView stateView;
     private View myRow;
     private RankingAdapter adapter;
+    private LinearLayoutManager layoutManager;
     private String loadedSeason;
+    private String myUid;
+    private boolean myRowShown = true;
     private int loadToken;
 
     @Override
@@ -83,8 +87,18 @@ public class RankingActivity extends AppCompatActivity {
 
         Screens.padForSystemBars(findViewById(R.id.ranking_root));
         adapter = new RankingAdapter();
-        list.setLayoutManager(new LinearLayoutManager(this));
+        layoutManager = new LinearLayoutManager(this);
+        list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
+        list.setItemAnimator(null);
+        list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                updateMyRowVisibility();
+            }
+        });
+        list.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) ->
+                updateMyRowVisibility());
         pull.setOnRefreshListener(this::load);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
@@ -127,14 +141,16 @@ public class RankingActivity extends AppCompatActivity {
                 DAY_MONTH.format(Season.startOf(now)),
                 DAY_MONTH.format(Season.endOf(now).minusSeconds(1))));
         if (!season.equals(loadedSeason)) {
-            adapter.submit(Collections.emptyList(), uid);
+            adapter.clear();
         }
         loadedSeason = season;
+        myUid = uid;
         stateView.hide();
-        if (adapter.isEmpty() && !pull.isRefreshing()) {
+        if (!adapter.hasContent() && !pull.isRefreshing()) {
             Skeleton.show(skeleton);
         }
-        RankingRows.bindMessage(myRow, myName(), R.string.ranking_me_loading);
+        RankingViews.bindPillMessage(myRow, myName(), R.string.ranking_me_loading);
+        updateMyRowVisibility();
 
         seasons.loadRanking(season, new SeasonRepository.Callback<RankingPage>() {
             @Override
@@ -144,10 +160,7 @@ public class RankingActivity extends AppCompatActivity {
                 pull.setRefreshing(false);
                 adapter.submit(page.getEntries(), uid);
                 offlineNote.setVisibility(page.isFromCache() ? View.VISIBLE : View.GONE);
-                if (page.getEntries().isEmpty()) {
-                    stateView.show(R.drawable.ic_leaderboard, getString(R.string.ranking_empty_title),
-                            getString(R.string.ranking_empty), null, null);
-                }
+                list.post(RankingActivity.this::updateMyRowVisibility);
                 loadMyPosition(season, uid, page, token);
             }
 
@@ -156,11 +169,12 @@ public class RankingActivity extends AppCompatActivity {
                 if (token != loadToken || isDestroyed()) return;
                 Skeleton.hide(skeleton);
                 pull.setRefreshing(false);
-                if (adapter.isEmpty()) {
+                if (!adapter.hasContent()) {
                     stateView.show(R.drawable.ic_error, null, getString(messageRes),
                             getString(R.string.action_retry), RankingActivity.this::load);
                 }
-                RankingRows.bindMessage(myRow, myName(), messageRes);
+                RankingViews.bindPillMessage(myRow, myName(), messageRes);
+                updateMyRowVisibility();
             }
         });
     }
@@ -171,18 +185,45 @@ public class RankingActivity extends AppCompatActivity {
             public void onSuccess(RankingEntry me) {
                 if (token != loadToken || isDestroyed()) return;
                 if (me == null) {
-                    RankingRows.bindMessage(myRow, myName(), R.string.ranking_me_not_played);
+                    RankingViews.bindPillMessage(myRow, myName(), R.string.ranking_me_not_played);
                 } else {
-                    RankingRows.bind(myRow, me, true);
+                    RankingViews.bindPill(myRow, me, true);
                 }
+                updateMyRowVisibility();
             }
 
             @Override
             public void onError(int messageRes) {
                 if (token != loadToken || isDestroyed()) return;
-                RankingRows.bindMessage(myRow, myName(), messageRes);
+                RankingViews.bindPillMessage(myRow, myName(), messageRes);
+                updateMyRowVisibility();
             }
         });
+    }
+
+    private void updateMyRowVisibility() {
+        int position = myUid == null ? RecyclerView.NO_POSITION : adapter.adapterPositionOf(myUid);
+        boolean show = position == RecyclerView.NO_POSITION || !isOnScreen(position);
+        if (show == myRowShown) return;
+        myRowShown = show;
+        myRow.animate().cancel();
+        if (show) {
+            myRow.setVisibility(View.VISIBLE);
+            myRow.animate().alpha(1f).setDuration(UiTokens.DURATION_SHORT_MS).start();
+        } else {
+            myRow.animate().alpha(0f).setDuration(UiTokens.DURATION_SHORT_MS)
+                    .withEndAction(() -> {
+                        if (!myRowShown) myRow.setVisibility(View.INVISIBLE);
+                    })
+                    .start();
+        }
+    }
+
+    private boolean isOnScreen(int position) {
+        View item = layoutManager.findViewByPosition(position);
+        if (item == null || item.getHeight() == 0) return false;
+        int myRowTopInList = myRow.getTop() - pull.getTop() - list.getTop();
+        return item.getBottom() > 0 && item.getTop() < myRowTopInList;
     }
 
     private String myName() {

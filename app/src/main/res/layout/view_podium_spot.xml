@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_xs"
+    android:paddingEnd="@dimen/space_xs">
+
+    <ImageView
+        android:id="@+id/spot_crown"
+        android:layout_width="@dimen/ranking_crown_size"
+        android:layout_height="@dimen/ranking_crown_size"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_crown"
+        android:visibility="gone"
+        app:tint="@color/seal_gold"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/spot_avatar_area"
+        android:layout_width="@dimen/ranking_avatar_podium"
+        android:layout_height="@dimen/ranking_avatar_podium"
+        android:clipChildren="false"
+        android:importantForAccessibility="noHideDescendants">
+
+        <TextView
+            android:id="@+id/spot_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/ranking_ring_gap"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="@color/avatar_1"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.Display"
+            android:textColor="@color/text_primary"
+            tools:text="T" />
+
+        <View
+            android:id="@+id/spot_ring"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_ranking_ring"
+            android:backgroundTint="@color/seal_gold" />
+
+        <TextView
+            android:id="@+id/spot_badge"
+            android:layout_width="@dimen/ranking_badge_size"
+            android:layout_height="@dimen/ranking_badge_size"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="@color/seal_gold"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Marvel.Label"
+            android:textColor="@color/black"
+            android:translationY="@dimen/ranking_badge_offset"
+            tools:text="1" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/spot_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_md"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Marvel.Title"
+        tools:text="tony_99" />
+
+    <LinearLayout
+        android:id="@+id/spot_rank_row"
+        tools:ignore="UseCompoundDrawables"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/icon_sm"
+            android:layout_height="@dimen/icon_sm"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_medal"
+            app:tint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/spot_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_xs"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Marvel.Caption"
+            tools:text="Sentinela" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spot_trophies_row"
+        tools:ignore="UseCompoundDrawables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        android:gravity="center_vertical"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/icon_sm"
+            android:layout_height="@dimen/icon_sm"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_trophy"
+            app:tint="@color/red" />
+
+        <TextView
+            android:id="@+id/spot_trophies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_xs"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Marvel.Title"
+            tools:text="500" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spot_prize_row"
+        tools:ignore="UseCompoundDrawables"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/spot_prize_icon"
+            android:layout_width="@dimen/icon_sm"
+            android:layout_height="@dimen/icon_sm"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_chest"
+            app:tint="@color/seal_gold" />
+
+        <TextView
+            android:id="@+id/spot_prize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_xs"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Marvel.Caption"
+            android:textStyle="bold"
+            tools:text="Lendário + 500" />
+    </LinearLayout>
+</LinearLayout>

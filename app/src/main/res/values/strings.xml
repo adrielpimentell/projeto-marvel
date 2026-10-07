@@ -479,8 +479,6 @@
     <string name="ranking_time_minutes">%1$dmin</string>
     <string name="ranking_offline">Sem conexão: mostrando o último ranking salvo.</string>
     <string name="ranking_error">Não deu para carregar o ranking. Tente de novo.</string>
-    <string name="ranking_empty_title">Ninguém jogou ainda</string>
-    <string name="ranking_empty">Vença uma batalha nesta semana e apareça no topo.</string>
     <string name="ranking_refresh">Atualizar ranking</string>
     <string name="ranking_prize">Prêmio: baú %1$s + %2$s moedas</string>
     <string name="ranking_you">%1$s (você)</string>
@@ -500,4 +498,9 @@
     <string name="season_end_open">Abrir baú</string>
     <string name="debug_end_season">Simular fim da temporada</string>
     <string name="debug_end_season_none">Temporada encerrada sem prêmio: sem batalhas ou prêmio já recebido.</string>
+    <string name="ranking_chest">Baú %1$s</string>
+    <string name="ranking_prize_short">%1$s + %2$s</string>
+    <string name="ranking_empty_message">Vença batalhas para subir no ranking</string>
+    <string name="ranking_empty_spot">—</string>
+    <string name="ranking_spot_empty_description">%1$sº lugar vago</string>
 </resources>

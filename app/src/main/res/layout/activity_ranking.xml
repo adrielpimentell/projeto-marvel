@@ -76,7 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/space_sm"
-        app:layout_constraintBottom_toTopOf="@id/ranking_me"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ranking_header">
@@ -89,12 +89,12 @@
             android:overScrollMode="always"
             android:paddingStart="@dimen/screen_margin"
             android:paddingEnd="@dimen/screen_margin"
-            android:paddingBottom="@dimen/space_sm" />
+            android:paddingBottom="@dimen/ranking_footer_space" />
     </com.example.marvel.ui.common.PullToRefreshLayout>
 
     <include
         android:id="@+id/ranking_skeleton"
-        layout="@layout/view_skeleton_list"
+        layout="@layout/view_skeleton_ranking"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/screen_margin"
@@ -109,14 +109,14 @@
         layout="@layout/view_state"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/ranking_me"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ranking_header" />
 
     <include
         android:id="@+id/ranking_me"
-        layout="@layout/item_ranking_row"
+        layout="@layout/item_ranking_pill"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/screen_margin"
