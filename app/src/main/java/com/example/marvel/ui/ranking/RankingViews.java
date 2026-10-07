@@ -13,16 +13,13 @@ import com.example.marvel.data.season.RankingEntry;
 import com.example.marvel.game.Ranks;
 import com.example.marvel.game.SeasonPrize;
 import com.example.marvel.ui.common.ArtifactUi;
+import com.example.marvel.ui.common.Avatars;
 import com.example.marvel.ui.common.PlayerHud;
 import com.example.marvel.ui.common.UiTokens;
-
-import java.util.Locale;
 
 final class RankingViews {
 
     private static final int[] PODIUM_COLORS = {R.color.seal_gold, R.color.seal_silver, R.color.seal_bronze};
-    private static final int[] AVATAR_COLORS = {R.color.avatar_1, R.color.avatar_2, R.color.avatar_3,
-            R.color.avatar_4, R.color.avatar_5, R.color.avatar_6};
 
     private RankingViews() {
     }
@@ -162,19 +159,7 @@ final class RankingViews {
     }
 
     private static void bindAvatar(TextView avatar, String playerName) {
-        Context context = avatar.getContext();
-        avatar.setText(initial(playerName));
-        avatar.setBackgroundTintList(ColorStateList.valueOf(context.getColor(avatarColor(playerName))));
-    }
-
-    static String initial(String playerName) {
-        if (playerName == null || playerName.isEmpty()) return "?";
-        return playerName.substring(0, 1).toUpperCase(Locale.ROOT);
-    }
-
-    static int avatarColor(String playerName) {
-        String key = playerName == null ? "" : playerName.toLowerCase(Locale.ROOT);
-        return AVATAR_COLORS[Math.floorMod(key.hashCode(), AVATAR_COLORS.length)];
+        Avatars.bindInitial(avatar, playerName);
     }
 
     private static String rankName(Context context, RankingEntry entry) {

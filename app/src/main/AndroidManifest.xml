@@ -50,6 +50,11 @@
             tools:ignore="LockedOrientationActivity,DiscouragedApi"
             android:exported="false" />
         <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity,DiscouragedApi"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity,DiscouragedApi"

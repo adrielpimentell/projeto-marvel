@@ -256,6 +256,10 @@ public class PlayerState {
         return seasonResult;
     }
 
+    public int getSeasonPrizesCount() {
+        return seasonPrizesGranted.size();
+    }
+
     public boolean hasSeasonChest() {
         return !seasonChestRarities.isEmpty();
     }

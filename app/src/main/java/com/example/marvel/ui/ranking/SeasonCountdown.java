@@ -17,15 +17,17 @@ public final class SeasonCountdown {
     }
 
     public static String format(Context context, Duration left) {
+        return context.getString(R.string.ranking_ends_in, time(context, left));
+    }
+
+    public static String time(Context context, Duration left) {
         long[] parts = parts(left);
-        String time;
         if (parts[0] > 0) {
-            time = context.getString(R.string.ranking_time_days, parts[0], parts[1]);
-        } else if (parts[1] > 0) {
-            time = context.getString(R.string.ranking_time_hours, parts[1], parts[2]);
-        } else {
-            time = context.getString(R.string.ranking_time_minutes, parts[2]);
+            return context.getString(R.string.ranking_time_days, parts[0], parts[1]);
         }
-        return context.getString(R.string.ranking_ends_in, time);
+        if (parts[1] > 0) {
+            return context.getString(R.string.ranking_time_hours, parts[1], parts[2]);
+        }
+        return context.getString(R.string.ranking_time_minutes, parts[2]);
     }
 }

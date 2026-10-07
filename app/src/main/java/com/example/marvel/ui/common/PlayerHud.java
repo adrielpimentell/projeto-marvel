@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.marvel.R;
+import com.example.marvel.data.auth.AuthRepository;
 import com.example.marvel.game.PlayerState;
+import com.example.marvel.ui.profile.ProfileActivity;
 import com.example.marvel.ui.ranks.RankTrailActivity;
 
 import java.text.NumberFormat;
@@ -39,6 +41,17 @@ public final class PlayerHud {
                 context.getString(R.string.trophies_description, state.getTrophies()));
 
         showCoins(hud.findViewById(R.id.coin_chip), state.getCoins());
+        bindProfile(hud, activity);
+    }
+
+    private static void bindProfile(View hud, Activity activity) {
+        View button = hud.findViewById(R.id.hud_profile);
+        if (button == null) return;
+        String name = AuthRepository.getInstance(hud.getContext()).cachedPlayerName();
+        Avatars.bindInitial(hud.findViewById(R.id.hud_avatar), name);
+        if (activity != null) {
+            button.setOnClickListener(v -> activity.startActivity(ProfileActivity.newIntent(activity)));
+        }
     }
 
     public static void showCoins(View coinChip, int coins) {

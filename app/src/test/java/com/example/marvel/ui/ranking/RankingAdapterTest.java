@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.example.marvel.data.season.RankingEntry;
+import com.example.marvel.ui.common.Avatars;
 
 import org.junit.Test;
 
@@ -76,9 +77,9 @@ public class RankingAdapterTest {
 
     @Test
     public void avatarUsesTheFirstLetterAndAStableColor() {
-        assertEquals("T", RankingViews.initial("tony_99"));
-        assertEquals("?", RankingViews.initial(""));
-        assertEquals(RankingViews.avatarColor("Tony_99"), RankingViews.avatarColor("tony_99"));
+        assertEquals("T", Avatars.initial("tony_99"));
+        assertEquals("?", Avatars.initial(""));
+        assertEquals(Avatars.colorRes("Tony_99"), Avatars.colorRes("tony_99"));
     }
 
     private static RankingLayout load(int players, Integer myPosition) {
