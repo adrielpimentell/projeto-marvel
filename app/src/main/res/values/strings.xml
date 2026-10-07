@@ -427,6 +427,7 @@
     <string name="error_missing_api_key">Chave da API não configurada. Adicione COMICVINE_API_KEY no arquivo local.properties e sincronize o Gradle.</string>
     <string name="error_invalid_api_key">A Comic Vine recusou a chave. Confira o COMICVINE_API_KEY no local.properties.</string>
     <string name="error_rate_limit">Muitas requisições em pouco tempo. Aguarde alguns minutos e tente de novo.</string>
+    <string name="error_api_blocked">A Comic Vine bloqueou a chave da API por excesso de uso. Tente de novo em cerca de 1 hora.</string>
     <string name="error_server">O servidor da Comic Vine respondeu com erro (%1$d). Tente de novo.</string>
     <string name="error_api">A Comic Vine respondeu: %1$s</string>
     <string name="error_not_found">Personagem não encontrado.</string>

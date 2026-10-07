@@ -288,6 +288,7 @@ public class CharacterRepository {
             int code = response.code();
             if (code == 401) return text(R.string.error_invalid_api_key);
             if (code == 420 || code == 429) return text(R.string.error_rate_limit);
+            if (code == 403) return text(R.string.error_api_blocked);
             return text(R.string.error_server, code);
         }
         if (body == null) {
