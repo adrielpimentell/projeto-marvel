@@ -25,7 +25,7 @@ public final class ApiClient {
     public static final String USER_AGENT = "MarvelBattle/1.0 (Android; projeto academico em Java)";
 
     private static final long CACHE_SIZE_BYTES = 10L * 1024 * 1024;
-    private static final int CACHE_MAX_AGE_SECONDS = 60 * 60;
+    private static final int CACHE_MAX_AGE_SECONDS = 7 * 24 * 60 * 60;
     private static final int OFFLINE_MAX_STALE_DAYS = 7;
 
     private static ComicVineService service;
