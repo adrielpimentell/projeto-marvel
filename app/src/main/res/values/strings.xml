@@ -263,11 +263,11 @@
     <string name="action_retry">Tentar de novo</string>
     <string name="action_search_more">Procurar mais</string>
 
-    <string name="nav_heroes">Heróis</string>
+    <string name="nav_home">Início</string>
     <string name="nav_market">Mercado</string>
     <string name="nav_my_heroes">Meus Heróis</string>
     <string name="nav_ranking">Ranking</string>
-    <string name="nav_album">Álbum de Equipes</string>
+    <string name="nav_album">Álbum</string>
 
     <string name="album_title">Álbum</string>
     <string name="album_subtitle">Junte membros de cada equipe e ganhe selos</string>

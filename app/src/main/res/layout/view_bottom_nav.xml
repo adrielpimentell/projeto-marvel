@@ -9,5 +9,9 @@
     app:itemIconSize="24dp"
     app:itemIconTint="@color/nav_icon"
     app:itemRippleColor="@color/red_translucent"
-    app:labelVisibilityMode="unlabeled"
+    app:itemTextAppearanceActive="@style/TextAppearance.Marvel.NavLabel"
+    app:itemTextAppearanceActiveBoldEnabled="false"
+    app:itemTextAppearanceInactive="@style/TextAppearance.Marvel.NavLabel"
+    app:itemTextColor="@color/nav_icon"
+    app:labelVisibilityMode="labeled"
     app:menu="@menu/bottom_nav" />
