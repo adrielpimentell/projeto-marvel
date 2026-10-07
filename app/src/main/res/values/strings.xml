@@ -466,8 +466,6 @@
     <string name="auth_error_password_mismatch">As senhas não são iguais</string>
     <string name="auth_reset_sent">Se esse e-mail tiver conta, enviamos um link para criar uma nova senha.</string>
     <string name="auth_reset_need_email">Digite seu e-mail acima para receber o link</string>
-    <string name="account_playing_as">Jogador: %1$s</string>
-    <string name="account_choose_name">Escolher nome de jogador</string>
     <string name="account_sign_out">Sair</string>
     <string name="account_sign_out_title">Sair da conta?</string>
     <string name="account_sign_out_message">Seu progresso continua salvo neste aparelho. Para voltar, entre com o mesmo e-mail.</string>

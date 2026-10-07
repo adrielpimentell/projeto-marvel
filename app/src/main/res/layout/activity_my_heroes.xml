@@ -46,21 +46,6 @@
                 android:text="@string/my_heroes_subtitle"
                 android:textColor="@color/text_secondary"
                 android:textAppearance="@style/TextAppearance.Marvel.BodySmall"/>
-
-            <TextView
-                android:id="@+id/my_heroes_account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_xs"
-                android:background="?attr/selectableItemBackground"
-                android:drawablePadding="@dimen/space_xs"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.Marvel.Caption"
-                app:drawableStartCompat="@drawable/ic_person"
-                app:drawableTint="@color/text_secondary"
-                tools:text="Jogador: Tony_99" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
