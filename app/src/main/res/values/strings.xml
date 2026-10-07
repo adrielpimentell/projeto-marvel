@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Marvel Battle</string>
+    <string name="app_name">MARVEL</string>
 
     <string name="list_title">Marvel</string>
     <string name="list_subtitle">Escolha seu campeão</string>
