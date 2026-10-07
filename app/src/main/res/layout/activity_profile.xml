@@ -62,6 +62,14 @@
                     android:textColor="@color/text_primary"
                     tools:text="T" />
 
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profile_avatar_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Pill" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -226,6 +234,24 @@
                         android:layout_marginTop="@dimen/space_xs"
                         android:orientation="vertical" />
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                style="@style/Widget.Marvel.SectionLabel"
+                android:accessibilityHeading="true"
+                android:text="@string/account_section" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/profile_account_actions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/space_xs"
+                    android:paddingBottom="@dimen/space_xs" />
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

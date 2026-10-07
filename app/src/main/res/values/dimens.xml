@@ -57,4 +57,5 @@
     <dimen name="hud_avatar_size">36dp</dimen>
     <dimen name="avatar_border_width">2dp</dimen>
     <dimen name="profile_avatar_size">96dp</dimen>
+    <dimen name="avatar_choice_size">72dp</dimen>
 </resources>

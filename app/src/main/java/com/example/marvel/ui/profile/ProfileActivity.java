@@ -2,10 +2,12 @@ package com.example.marvel.ui.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,6 +61,44 @@ public class ProfileActivity extends AppCompatActivity {
         Screens.padForSystemBars(findViewById(R.id.profile_root));
         playerStore = PlayerStore.getInstance(this);
         findViewById(R.id.profile_back).setOnClickListener(v -> finish());
+        bindAccountActions();
+    }
+
+    private void bindAccountActions() {
+        ViewGroup actions = findViewById(R.id.profile_account_actions);
+        actions.removeAllViews();
+        addAction(actions, R.drawable.ic_person, R.string.account_change_avatar, false,
+                () -> AccountDialogs.showAvatarPicker(this, this::rebindHeader));
+        addAction(actions, R.drawable.ic_edit, R.string.account_change_name, false,
+                () -> AccountDialogs.showRename(this, this::rebindHeader));
+        addAction(actions, R.drawable.ic_lock, R.string.account_change_password, false,
+                () -> AccountDialogs.showChangePassword(this));
+        addAction(actions, R.drawable.ic_logout, R.string.account_sign_out, false,
+                () -> AccountDialogs.showSignOut(this));
+        addAction(actions, R.drawable.ic_delete, R.string.account_delete, true,
+                () -> AccountDialogs.showDelete(this));
+    }
+
+    private void addAction(ViewGroup parent, int iconRes, int textRes, boolean danger, Runnable onClick) {
+        View row = LayoutInflater.from(this).inflate(R.layout.view_profile_action, parent, false);
+        ImageView icon = row.findViewById(R.id.action_icon);
+        icon.setImageResource(iconRes);
+        TextView text = row.findViewById(R.id.action_text);
+        text.setText(textRes);
+        if (danger) {
+            int red = getColor(R.color.red);
+            icon.setImageTintList(ColorStateList.valueOf(red));
+            text.setTextColor(red);
+            ((ImageView) row.findViewById(R.id.action_chevron)).setImageTintList(ColorStateList.valueOf(red));
+        }
+        row.setContentDescription(getString(textRes));
+        row.setOnClickListener(v -> onClick.run());
+        parent.addView(row);
+    }
+
+    private void rebindHeader() {
+        if (isFinishing() || isDestroyed()) return;
+        bindHeader(playerStore.get());
     }
 
     @Override
@@ -70,12 +110,13 @@ public class ProfileActivity extends AppCompatActivity {
         bindSeason(state);
         bindCollection(state);
         bindRecords(state);
+        AuthRepository.getInstance(this).refreshProfile(this::rebindHeader);
     }
 
     private void bindHeader(PlayerState state) {
         String name = AuthRepository.getInstance(this).cachedPlayerName();
         String rank = PlayerHud.rankName(this, state.getRank());
-        Avatars.bindInitial(findViewById(R.id.profile_avatar), name);
+        Avatars.bindMine(findViewById(R.id.profile_avatar), findViewById(R.id.profile_avatar_image));
         ((TextView) findViewById(R.id.profile_name)).setText(name == null ? getString(R.string.profile_none) : name);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

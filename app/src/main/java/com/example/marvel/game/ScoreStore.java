@@ -17,6 +17,10 @@ public class ScoreStore {
                 .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
+    static void deleteAll(Context context) {
+        context.getApplicationContext().deleteSharedPreferences(PREFS_NAME);
+    }
+
     public int getScore() {
         return prefs.getInt(KEY_SCORE, 0);
     }

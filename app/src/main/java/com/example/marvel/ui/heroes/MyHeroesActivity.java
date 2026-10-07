@@ -18,7 +18,6 @@ import com.example.marvel.game.OwnedHero;
 import com.example.marvel.game.PlayerState;
 import com.example.marvel.game.PlayerStore;
 import com.example.marvel.ui.artifacts.ArtifactsActivity;
-import com.example.marvel.ui.auth.LoginActivity;
 import com.example.marvel.ui.auth.SignUpActivity;
 import com.example.marvel.ui.common.Families;
 import com.example.marvel.ui.common.FamilyFilter;
@@ -28,7 +27,6 @@ import com.example.marvel.ui.common.SearchBar;
 import com.example.marvel.ui.common.SearchText;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -88,7 +86,6 @@ public class MyHeroesActivity extends AppCompatActivity implements MyHeroesAdapt
         MainNav.setup(this, bottomNav, R.id.nav_my_heroes, () -> list.smoothScrollToPosition(0));
 
         accountText = findViewById(R.id.my_heroes_account);
-        findViewById(R.id.my_heroes_sign_out).setOnClickListener(v -> confirmSignOut());
     }
 
     @Override
@@ -120,19 +117,6 @@ public class MyHeroesActivity extends AppCompatActivity implements MyHeroesAdapt
                 accountText.setText(null);
             }
         });
-    }
-
-    private void confirmSignOut() {
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.account_sign_out_title)
-                .setMessage(R.string.account_sign_out_message)
-                .setNegativeButton(R.string.action_cancel, null)
-                .setPositiveButton(R.string.account_sign_out, (dialog, which) -> {
-                    AuthRepository.getInstance(this).signOut();
-                    startActivity(LoginActivity.newSignedOutIntent(this));
-                    finish();
-                })
-                .show();
     }
 
     @Override

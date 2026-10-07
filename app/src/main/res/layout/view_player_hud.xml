@@ -29,6 +29,16 @@
             android:textColor="@color/text_primary"
             tools:text="T" />
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/hud_avatar_image"
+            android:layout_width="@dimen/hud_avatar_size"
+            android:layout_height="@dimen/hud_avatar_size"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Marvel.Pill" />
+
         <View
             android:layout_width="@dimen/hud_avatar_size"
             android:layout_height="@dimen/hud_avatar_size"

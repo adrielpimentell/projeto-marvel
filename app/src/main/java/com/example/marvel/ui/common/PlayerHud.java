@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.marvel.R;
-import com.example.marvel.data.auth.AuthRepository;
 import com.example.marvel.game.PlayerState;
 import com.example.marvel.ui.profile.ProfileActivity;
 import com.example.marvel.ui.ranks.RankTrailActivity;
@@ -47,8 +46,7 @@ public final class PlayerHud {
     private static void bindProfile(View hud, Activity activity) {
         View button = hud.findViewById(R.id.hud_profile);
         if (button == null) return;
-        String name = AuthRepository.getInstance(hud.getContext()).cachedPlayerName();
-        Avatars.bindInitial(hud.findViewById(R.id.hud_avatar), name);
+        Avatars.bindMine(hud.findViewById(R.id.hud_avatar), hud.findViewById(R.id.hud_avatar_image));
         if (activity != null) {
             button.setOnClickListener(v -> activity.startActivity(ProfileActivity.newIntent(activity)));
         }

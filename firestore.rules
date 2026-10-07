@@ -38,6 +38,15 @@ service cloud.firestore {
           || (before < 5 && after == 0));
     }
 
+    function validAvatar(data) {
+      return !('avatarHeroId' in data) || (data.avatarHeroId is int && data.avatarHeroId > 0);
+    }
+
+    function nameStillReserved(uid, data) {
+      return validPlayerName(data.nomeJogador)
+        && getAfter(namePath(data.nomeJogador)).data.uid == uid;
+    }
+
     match /usernames/{nameKey} {
       allow get: if true;
       allow list: if false;
@@ -45,9 +54,14 @@ service cloud.firestore {
         && nameKey.matches('^[a-z0-9_]{3,20}$')
         && request.resource.data.keys().hasOnly(['uid'])
         && request.resource.data.uid == request.auth.uid
-        && !exists(userPath(request.auth.uid))
-        && getAfter(userPath(request.auth.uid)).data.nomeJogador.lower() == nameKey;
-      allow update, delete: if false;
+        && getAfter(userPath(request.auth.uid)).data.nomeJogador.lower() == nameKey
+        && (!exists(userPath(request.auth.uid))
+          || !existsAfter(namePath(get(userPath(request.auth.uid)).data.nomeJogador)));
+      allow delete: if signedIn()
+        && resource.data.uid == request.auth.uid
+        && (!existsAfter(userPath(request.auth.uid))
+          || getAfter(userPath(request.auth.uid)).data.nomeJogador.lower() != nameKey);
+      allow update: if false;
     }
 
     match /users/{uid} {
@@ -58,11 +72,15 @@ service cloud.firestore {
         && validPlayerName(request.resource.data.nomeJogador)
         && getAfter(namePath(request.resource.data.nomeJogador)).data.uid == uid;
       allow update: if isOwner(uid)
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['temporada', 'premiosRecebidos'])
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['temporada', 'premiosRecebidos', 'nomeJogador', 'avatarHeroId'])
         && (!('temporada' in request.resource.data) || validSeason(request.resource.data.temporada))
         && prizesOnlyGrow(resource.data.get('premiosRecebidos', []),
-                          request.resource.data.get('premiosRecebidos', []));
-      allow delete: if false;
+                          request.resource.data.get('premiosRecebidos', []))
+        && (request.resource.data.nomeJogador == resource.data.nomeJogador
+          || nameStillReserved(uid, request.resource.data))
+        && validAvatar(request.resource.data);
+      allow delete: if isOwner(uid);
     }
 
     match /temporadas/{seasonId}/jogadores/{uid} {
@@ -75,10 +93,12 @@ service cloud.firestore {
         && request.resource.data.trofeus in [0, 10]
         && request.resource.data.atualizadoEm == request.time;
       allow update: if isOwner(uid)
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['trofeus', 'atualizadoEm'])
-        && validStep(resource.data.trofeus, request.resource.data.trofeus)
-        && request.resource.data.atualizadoEm == request.time;
-      allow delete: if false;
+        && ((request.resource.data.diff(resource.data).affectedKeys().hasOnly(['trofeus', 'atualizadoEm'])
+            && validStep(resource.data.trofeus, request.resource.data.trofeus)
+            && request.resource.data.atualizadoEm == request.time)
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nomeJogador'])
+            && request.resource.data.nomeJogador == getAfter(userPath(uid)).data.nomeJogador));
+      allow delete: if isOwner(uid);
     }
   }
 }

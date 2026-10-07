@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_lg"
+    android:paddingTop="@dimen/space_sm"
+    android:paddingEnd="@dimen/space_lg">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_message"
+        android:textAppearance="@style/TextAppearance.Marvel.Body" />
+
+    <TextView
+        android:id="@+id/delete_type_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_md"
+        android:textAppearance="@style/TextAppearance.Marvel.BodySmall"
+        tools:text="Digite teste123 para confirmar" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/delete_name_layout"
+        style="@style/Widget.Marvel.TextField"
+        android:hint="@string/auth_player_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/delete_name"
+            style="@style/Widget.Marvel.TextField.Input"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:importantForAutofill="no" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/delete_password_layout"
+        style="@style/Widget.Marvel.TextField"
+        android:hint="@string/auth_password"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/delete_password"
+            style="@style/Widget.Marvel.TextField.Input"
+            android:inputType="textPassword"
+            android:autofillHints="password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/dialog_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_sm"
+        android:accessibilityLiveRegion="polite"
+        android:textAppearance="@style/TextAppearance.Marvel.Body"
+        android:textColor="?attr/colorError"
+        android:visibility="gone"
+        tools:text="Sem conexão"
+        tools:visibility="visible" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/dialog_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/space_sm"
+        android:contentDescription="@string/auth_loading"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/red"
+        app:indicatorSize="@dimen/icon_md"
+        tools:visibility="visible" />
+</LinearLayout>

@@ -530,4 +530,26 @@
     <string name="profile_best_rank">Maior patente nesta temporada</string>
     <string name="profile_seasons_awarded">Temporadas premiadas</string>
     <string name="profile_none">—</string>
+    <string name="account_section">Conta</string>
+    <string name="account_change_avatar">Trocar avatar</string>
+    <string name="account_change_name">Alterar nome de jogador</string>
+    <string name="account_change_password">Alterar senha</string>
+    <string name="account_delete">Excluir conta</string>
+    <string name="account_wrong_password">Senha atual incorreta</string>
+    <string name="action_save">Salvar</string>
+    <string name="avatar_title">Escolha seu avatar</string>
+    <string name="avatar_initial">Inicial</string>
+    <string name="avatar_empty">Seus heróis aparecem aqui depois que os detalhes deles carregam.</string>
+    <string name="avatar_choice_description">Usar %1$s como avatar</string>
+    <string name="rename_current">Nome atual: %1$s</string>
+    <string name="rename_same">Esse já é o seu nome de jogador</string>
+    <string name="rename_done">Agora você é %1$s</string>
+    <string name="password_current">Senha atual</string>
+    <string name="password_new">Nova senha</string>
+    <string name="password_done">Senha alterada</string>
+    <string name="delete_message">Isso apaga seu nome de jogador, seus troféus desta semana e o progresso salvo neste aparelho. Não dá para desfazer.</string>
+    <string name="delete_type_name">Digite %1$s para confirmar</string>
+    <string name="delete_name_mismatch">O nome digitado não confere</string>
+    <string name="delete_confirm">Excluir</string>
+    <string name="delete_done">Conta excluída</string>
 </resources>

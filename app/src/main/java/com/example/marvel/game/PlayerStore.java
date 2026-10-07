@@ -41,6 +41,19 @@ public class PlayerStore {
         return instance;
     }
 
+    public static synchronized void deleteLocalData(Context context, String uid) {
+        Context app = context.getApplicationContext();
+        if (instance != null && instance.account.equals(uid)) {
+            instance = null;
+        }
+        app.deleteSharedPreferences(ACCOUNT_PREFS_PREFIX + uid);
+        SharedPreferences device = app.getSharedPreferences(DEVICE_PREFS_NAME, Context.MODE_PRIVATE);
+        if (uid.equals(device.getString(KEY_LEGACY_OWNER, null))) {
+            app.deleteSharedPreferences(PREFS_NAME);
+            ScoreStore.deleteAll(app);
+        }
+    }
+
     private PlayerStore(Context appContext, String account) {
         this.appContext = appContext;
         this.account = account;
